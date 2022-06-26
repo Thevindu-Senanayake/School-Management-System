@@ -1,0 +1,3 @@
+user model name changes to userName
+TODO check function forgotPassword in authcontroller
+TODO check JSON web token is required for this project
