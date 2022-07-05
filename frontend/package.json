@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "frontend code for school management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thevindu_Senanayake",
+  "license": "MIT",
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "concurrently": "^7.2.2",
+    "create-react-app": "^5.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^19.0.7",
+    "wait-on": "^6.0.1"
+  }
+}
