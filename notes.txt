@@ -1,0 +1,4 @@
+1.when using npm to start electron app replace "yarn start" with "npm start"
+2.MongoDB-Atlas credentials:
+	username: Thevindu
+	password: G7xj2tWZPSrekrHK
