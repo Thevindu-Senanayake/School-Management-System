@@ -6,7 +6,6 @@ const {
 	loginUser,
 	resetPassword,
 	getUserDetails,
-	updatePassword,
 	updateUserDetails,
 	logoutUser,
 	allUsers,
@@ -20,8 +19,9 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 
-router.route("/password/reset").post(resetPassword);
-router.route("/password/update").put(isAuthenticatedUser, updatePassword);
+router
+	.route("/password/reset")
+	.post(isAuthenticatedUser, authorizeRoles("god"), resetPassword);
 
 router.route("/logout").get(logoutUser);
 
@@ -30,11 +30,11 @@ router.route("/me/update").put(isAuthenticatedUser, updateUserDetails);
 
 router
 	.route("/admin/users")
-	.get(isAuthenticatedUser, authorizeRoles("admin"), allUsers);
+	.get(isAuthenticatedUser, authorizeRoles("admin,god"), allUsers);
 router
 	.route("/admin/user/:id")
-	.get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUserDetails)
-	.put(isAuthenticatedUser, authorizeRoles("admin"), updateUserDetailsByAdmin)
-	.delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+	.get(isAuthenticatedUser, authorizeRoles("admin,god"), getSingleUserDetails)
+	.put(isAuthenticatedUser, authorizeRoles("god"), updateUserDetailsByAdmin)
+	.delete(isAuthenticatedUser, authorizeRoles("god"), deleteUser);
 
 module.exports = router;
