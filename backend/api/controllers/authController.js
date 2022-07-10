@@ -4,8 +4,6 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const sendToken = require("../utils/JsonWebToken");
 
-const crypto = require("crypto");
-
 // Register a user  => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 	const { userName, password } = req.body;
