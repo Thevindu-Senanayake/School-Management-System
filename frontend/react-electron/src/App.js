@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import "./App.css";
+import "./css/auth.css";
 
 // auth imports
 import Login from "./components/auth/Login";
@@ -30,10 +31,12 @@ function App() {
 								</ProtectedRoutes>
 							}
 						/>
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
 					</Routes>
 				</div>
+				<Routes>
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+				</Routes>
 			</div>
 		</Router>
 	);

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Loader from "../layout/Loader";
 
@@ -14,24 +14,21 @@ const Login = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const { isAuthenticated, error, loading } = useSelector(
 		(state) => state.auth
 	);
 
-	const redirect = location.search ? `/${location.search.split("=")[1]}` : "/";
-
 	useEffect(() => {
 		if (isAuthenticated) {
-			navigate(redirect);
+			navigate("/");
 		}
 
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, isAuthenticated, alert, error, navigate, redirect]);
+	}, [dispatch, isAuthenticated, alert, error, navigate]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -45,51 +42,42 @@ const Login = () => {
 				<Loader />
 			) : (
 				<Fragment>
-					<div className="row wrapper">
-						<div className="col-10 col-lg-5">
-							<form className="shadow-lg" onSubmit={submitHandler}>
-								<h1 className="mb-3">Login</h1>
-								<div className="form-group">
-									<label htmlFor="username_field">User Name</label>
-									<input
-										id="username_field"
-										className="form-control"
-										value={userName}
-										onChange={(e) => setUserName(e.target.value)}
-									/>
-								</div>
-
-								<div className="form-group">
-									<label htmlFor="password_field">Password</label>
-									<input
-										type="password"
-										id="password_field"
-										className="form-control"
-										value={password}
-										onChange={(e) => setPassword(e.target.value)}
-									/>
-								</div>
-
-								<Link
-									to="/password/forgot"
-									className="float-right mb-4"
-								>
-									Forgot Password?
-								</Link>
-
-								<button
-									id="login_button"
-									type="submit"
-									className="btn btn-block py-3"
-								>
-									LOGIN
+					<div className="login-wrapper">
+						<form action="" className="form" onSubmit={submitHandler}>
+							<img src="images/avatar.png" alt="avatar" />
+							<h2>Login</h2>
+							<div className="input-group">
+								<input
+									type="text"
+									name="loginUser"
+									id="loginUser"
+									value={userName}
+									onChange={(e) => setUserName(e.target.value)}
+									required
+								/>
+								<label htmlFor="loginUser">User Name</label>
+							</div>
+							<div className="input-group">
+								<input
+									type="password"
+									name="loginPassword"
+									id="loginPassword"
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+								/>
+								<label htmlFor="loginPassword">Password</label>
+								<button type="submit" className="submit-btn">
+									Login
 								</button>
-
-								<Link to="/register" className="float-right mt-3">
-									New User?
+							</div>
+							<br />
+							<div className="links">
+								<Link to="/register" className="registerLink">
+									Create Account
 								</Link>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</Fragment>
 			)}
