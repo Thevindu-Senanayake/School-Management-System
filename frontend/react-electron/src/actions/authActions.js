@@ -26,7 +26,7 @@ export const login = (username, password) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			"/api/v1/login",
+			"/api/v1/auth/login",
 			{ userName: username, password },
 			config
 		);
@@ -54,7 +54,11 @@ export const register = (userData) => async (dispatch) => {
 			},
 		};
 
-		const { data } = await axios.post("/api/v1/register", userData, config);
+		const { data } = await axios.post(
+			"/api/v1/auth/register",
+			userData,
+			config
+		);
 
 		dispatch({
 			type: REGISTER_USER_SUCCESS,
@@ -73,7 +77,7 @@ export const loadUser = () => async (dispatch) => {
 	try {
 		dispatch({ type: LOAD_USER_REQUEST });
 
-		const { data } = await axios.get("/api/v1/me");
+		const { data } = await axios.get("/api/v1/auth/me");
 
 		dispatch({
 			type: LOAD_USER_SUCCESS,
@@ -90,7 +94,7 @@ export const loadUser = () => async (dispatch) => {
 // Logout
 export const logOut = () => async (dispatch) => {
 	try {
-		await axios.get("/api/v1/logout");
+		await axios.get("/api/v1/auth/logout");
 
 		dispatch({
 			type: LOGOUT_SUCCESS,

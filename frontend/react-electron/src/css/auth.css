@@ -6,7 +6,7 @@
  body {
 	background: url('../../public/images/img1.png') no-repeat center;
 	background-size: cover;
-	font-family: sans-serif;
+	font-family: 'Mingzat', sans-serif;
 }
 
 /*login form*/
