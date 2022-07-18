@@ -26,7 +26,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const { userName, password } = req.body;
 
-	console.log(userName, password);
 	// Checks if userName and password is entered by user
 	if (!userName || !password) {
 		return next(new ErrorHandler("Please enter username & password", 400));

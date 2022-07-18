@@ -7,6 +7,8 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/authActions";
 
+import authStules from "../../css/auth.module.css";
+
 const Login = () => {
 	const [userName, setUserName] = useState("");
 	const [password, setPassword] = useState("");
@@ -42,11 +44,15 @@ const Login = () => {
 				<Loader />
 			) : (
 				<Fragment>
-					<div className="login-wrapper">
-						<form action="" className="form" onSubmit={submitHandler}>
+					<div className={authStules.loginWrapper}>
+						<form
+							action=""
+							className={authStules.form}
+							onSubmit={submitHandler}
+						>
 							<img src="images/avatar.png" alt="avatar" />
 							<h2>Login</h2>
-							<div className="input-group">
+							<div className={authStules.inputGroup}>
 								<input
 									type="text"
 									name="loginUser"
@@ -57,7 +63,7 @@ const Login = () => {
 								/>
 								<label htmlFor="loginUser">User Name</label>
 							</div>
-							<div className="input-group">
+							<div className={authStules.inputGroup}>
 								<input
 									type="password"
 									name="loginPassword"
@@ -67,13 +73,16 @@ const Login = () => {
 									required
 								/>
 								<label htmlFor="loginPassword">Password</label>
-								<button type="submit" className="submit-btn">
+								<button type="submit" className={authStules.submitBtn}>
 									Login
 								</button>
 							</div>
 							<br />
-							<div className="links">
-								<Link to="/register" className="registerLink">
+							<div className={authStules.links}>
+								<Link
+									to="/register"
+									className={authStules.registerLink}
+								>
 									Create Account
 								</Link>
 							</div>

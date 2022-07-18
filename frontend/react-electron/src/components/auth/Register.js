@@ -5,7 +5,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { register, clearErrors } from "../../actions/authActions";
 
-import "../../css/auth.css";
+import authStules from "../../css/auth.module.css";
 
 const Register = () => {
 	const [userName, setUserName] = useState("");
@@ -42,17 +42,17 @@ const Register = () => {
 
 	return (
 		<Fragment>
-			<div className="register">
+			<div className={authStules.register}>
 				<form
 					onSubmit={submitHandler}
-					className="form"
+					className={authStules.form}
 					encType="multipart/form-data"
 				>
-					<Link to="/login" className="close">
+					<Link to="/login" className={authStules.close}>
 						&times;
 					</Link>
 					<h2>Register</h2>
-					<div className="input-group">
+					<div className={authStules.inputGroup}>
 						<input
 							type="name"
 							id="registerUser"
@@ -63,7 +63,7 @@ const Register = () => {
 						/>
 						<label htmlFor="registerUser">User Name</label>
 					</div>
-					<div className="input-group">
+					<div className={authStules.inputGroup}>
 						<input
 							type="password"
 							id="registerPassword"
@@ -77,7 +77,7 @@ const Register = () => {
 					<button
 						type="submit"
 						value="Submit"
-						className="submit-btn"
+						className={authStules.submitBtn}
 						disabled={loading ? true : false}
 					>
 						Register
