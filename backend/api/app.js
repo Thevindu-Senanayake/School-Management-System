@@ -15,10 +15,8 @@ app.use(fileUpload());
 
 // import all routes
 const auth = require("./routes/auth");
-const comSystem = require("./routes/chat");
 
 app.use("/api/v1/auth", auth);
-app.use("/api/v1/com", comSystem);
 
 // Middleware to handle errors
 app.use(errorMiddleware);
