@@ -2,7 +2,6 @@ const app = require("./app");
 const connectDatabase = require("./config/database");
 
 const dotenv = require("dotenv");
-const socket = require("socket.io");
 
 // setting up config file
 dotenv.config({ path: "backend/api/config/config.env" });
