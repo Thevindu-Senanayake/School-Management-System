@@ -75,15 +75,6 @@ const Login = () => {
 									Login
 								</button>
 							</div>
-							<br />
-							{/* <div className="links">
-								<Link
-									to="/register"
-									className="registerLink"
-								>
-									Create Account
-								</Link>
-							</div> */}
 						</form>
 					</div>
 				</Fragment>

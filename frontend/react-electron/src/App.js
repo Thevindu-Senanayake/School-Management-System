@@ -10,6 +10,8 @@ import Home from "./components/Home";
 
 import Chat from "./components/chat/Chat";
 
+import NavBar from "./components/layout/NavBar";
+
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import { loadUser } from "./actions/authActions";
 import store from "./store";
@@ -38,6 +40,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/chat" element={<Chat />} />
+					<Route path="/navbar" element={<NavBar />} />
 				</Routes>
 			</div>
 		</Router>
