@@ -1,10 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-import Loader from "../layout/Loader";
-
+import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+
+import Loader from "../layout/Loader";
 import { login, clearErrors } from "../../actions/authActions";
 
 const Login = () => {
