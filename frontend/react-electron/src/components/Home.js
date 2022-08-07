@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { logOut } from "../actions/authActions";
 import { useDispatch } from "react-redux";
@@ -19,11 +19,16 @@ const Home = () => {
 		navigate("/chat");
 	};
 
+	const navbarHandler = () => {
+		navigate("/navbar");
+	};
+
 	return (
 		<Fragment>
 			<div>Home</div>
 			<button onClick={logoutHandler}>logout</button>
 			<button onClick={chatHandler}>Chat</button>
+			<button onClick={navbarHandler}>navbar</button>
 		</Fragment>
 	);
 };

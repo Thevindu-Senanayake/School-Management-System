@@ -111,7 +111,7 @@ body {
 	color: inherit;
 }
 
-/* Navbar */
+/* Navbar*/
 a,
 a:focus,
 a:hover,
@@ -127,7 +127,7 @@ nav {
 	bottom: 0;
 	height: 100vh;
 	left: 0;
-	width: 280px;
+	width: 90px;
 	background: #3b3e49;
 	overflow: hidden;
 	transition: 1s;
@@ -172,7 +172,14 @@ a {
 	color: #fff;
 	text-align: center;
 }
+.nav-item {
+	/* top: 20px; */
+	color: #fff;
+	padding: 10px;
+	border-radius: 7px;
+}
 .nav-item-text {
+	/* position: sticky; */
 	top: 12px;
 	margin-left: 10px;
 	color: #fff;
@@ -184,21 +191,34 @@ a {
 	color: #34af6d;
 	transition: 0.5s;
 }
-.logout {
-	position: fixed;
-	bottom: 0;
-	right: calc(100vw - 279px);
-	left: 0;
+.logout button {
+	all: unset;
+	cursor: default;
+}
+.logout-button {
+	background: transparent;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	border: none;
+	width: 100%;
+}
+.logout-button:focus {
+	outline: 0 !important;
 }
 .container {
 	display: flex;
 	width: 100%;
 	height: 100%;
 }
-.nav-item {
-	padding: 10px;
-	border-radius: 7px;
-}
 .navbar-content {
-	position: relative;
+	position: sticky;
+}
+.nav-elements {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 85px);
+}
+.logout {
+	margin-top: auto;
 }

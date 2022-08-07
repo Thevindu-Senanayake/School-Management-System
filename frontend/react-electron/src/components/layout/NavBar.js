@@ -4,6 +4,7 @@ import { useAlert } from "react-alert";
 import { useNavigate, Link } from "react-router-dom";
 
 import { clearErrors } from "../../actions/authActions";
+import { logOut } from "../../actions/authActions";
 import Loader from "./Loader";
 
 const NavBar = () => {
@@ -15,8 +16,12 @@ const NavBar = () => {
 		(state) => state.auth
 	);
 
+	const logoutHandler = () => {
+		dispatch(logOut());
+		alert.success("Logged out successfully");
+	};
+
 	useEffect(() => {
-		console.log("isAuthenticated ", !isAuthenticated);
 		if (loading === false && !isAuthenticated) {
 			navigate("/login");
 		}
@@ -41,35 +46,16 @@ const NavBar = () => {
 										alt="avatar"
 										className="navbar-avatar"
 									/>
-									<span className="username">Username</span>
+									<span className="username">
+										{user && user.userName}
+									</span>
 								</div>
-								<ul>
-									{user && user.role === "user" && (
-										<Fragment>
-											<li className="nav-item">
-												<Link to="../Chat App/User.html">
-													<i className="fas fa-comment navbar-icon"></i>
-													<span className="nav-item-text">
-														Message
-													</span>
-												</Link>
-											</li>
-											<li className="nav-item">
-												<Link to="../old-attandances.html">
-													<i className="fas fa-chart-bar navbar-icon"></i>
-													<span className="nav-item-text">
-														Attendance
-													</span>
-												</Link>
-											</li>
-										</Fragment>
-									)}
-									{user &&
-										(user.role === "admin" ||
-											user.role === "god") && (
+								<div className="nav-elements">
+									<ul>
+										{user && user.role === "user" && (
 											<Fragment>
 												<li className="nav-item">
-													<Link to="../Chat App/Admin.html">
+													<Link to="/chat">
 														<i className="fas fa-comment navbar-icon"></i>
 														<span className="nav-item-text">
 															Message
@@ -77,38 +63,65 @@ const NavBar = () => {
 													</Link>
 												</li>
 												<li className="nav-item">
-													<Link to="../registered-users.html">
-														<i className="fas fa-database navbar-icon"></i>
-														<span className="nav-item-text">
-															Users
-														</span>
-													</Link>
-												</li>
-												<li className="nav-item">
-													<Link to="../Admin-Attendance.html">
+													<Link to="/attendance">
 														<i className="fas fa-chart-bar navbar-icon"></i>
 														<span className="nav-item-text">
 															Attendance
 														</span>
 													</Link>
 												</li>
-												<li className="nav-item">
-													<Link to="../Edit Profile.html">
-														<i className="fas fa-cog navbar-icon"></i>
-														<span className="nav-item-text">
-															Edit Profile
-														</span>
-													</Link>
-												</li>
 											</Fragment>
 										)}
-									<li className="nav-item logout">
-										<Link to="../Login.html">
+										{user &&
+											(user.role === "admin" ||
+												user.role === "god") && (
+												<Fragment>
+													<li className="nav-item">
+														<Link to="/chat">
+															<i className="fas fa-comment navbar-icon"></i>
+															<span className="nav-item-text">
+																Message
+															</span>
+														</Link>
+													</li>
+													<li className="nav-item">
+														<Link to="/all-users">
+															<i className="fas fa-database navbar-icon"></i>
+															<span className="nav-item-text">
+																Users
+															</span>
+														</Link>
+													</li>
+													<li className="nav-item">
+														<Link to="/attendance">
+															<i className="fas fa-chart-bar navbar-icon"></i>
+															<span className="nav-item-text">
+																Attendance
+															</span>
+														</Link>
+													</li>
+													<li className="nav-item">
+														<Link to="/edit-profile">
+															<i className="fas fa-cog navbar-icon"></i>
+															<span className="nav-item-text">
+																Edit Profile
+															</span>
+														</Link>
+													</li>
+												</Fragment>
+											)}
+									</ul>
+									<div className="nav-item logout">
+										<button
+											class="logout-button"
+											type="submit"
+											onClick={logoutHandler}
+										>
 											<i className="fas fa-sign-out-alt navbar-icon"></i>
 											<span className="nav-item-text">Log out</span>
-										</Link>
-									</li>
-								</ul>
+										</button>
+									</div>
+								</div>
 							</div>
 						</nav>
 					</div>
