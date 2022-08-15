@@ -127,16 +127,26 @@ nav {
 	bottom: 0;
 	height: 100vh;
 	left: 0;
-	width: 90px;
+	width: 85px;
 	background: #3b3e49;
 	overflow: hidden;
-	transition: 1s;
 	border-right: 0.5px solid white;
 	z-index: 1;
 }
 nav:hover {
 	width: 280px;
-	transition: 1s;
+	transition: 1ms;
+}
+.nav-item-text {
+	display: none;
+}
+nav:hover .nav-item-text {
+	opacity: 1;
+	display: inline-block;
+	top: 12px;
+	margin-left: 10px;
+	color: #fff;
+	transition: 0.1s;
 }
 .navbar-hedding-container {
 	text-align: center;
@@ -154,7 +164,8 @@ nav:hover {
 	text-transform: uppercase;
 	margin-left: 20px;
 	margin-top: 18px;
-	font-size: auto !important;
+	font-size: 1rem;
+	text-align: center;
 	color: #fff;
 }
 a {
@@ -178,12 +189,6 @@ a {
 	padding: 10px;
 	border-radius: 7px;
 }
-.nav-item-text {
-	/* position: sticky; */
-	top: 12px;
-	margin-left: 10px;
-	color: #fff;
-}
 .nav-item:hover {
 	background: grey;
 }
@@ -193,7 +198,7 @@ a {
 }
 .logout button {
 	all: unset;
-	cursor: default;
+	cursor: text;
 }
 .logout-button {
 	background: transparent;
