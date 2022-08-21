@@ -10,7 +10,8 @@ import Home from "./components/Home";
 
 import Chat from "./components/chat/Chat";
 
-import NavBar from "./components/layout/NavBar";
+import AllUsers from "./components/pages/admin/AllUsers";
+import UpdateProfile from "./components/pages/admin/UpdateProfile"
 
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import { loadUser } from "./actions/authActions";
@@ -24,7 +25,7 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<div className="container container-fluid">
+				<div className="">
 					<Routes>
 						<Route
 							path="/"
@@ -34,13 +35,28 @@ function App() {
 								</ProtectedRoutes>
 							}
 						/>
+						<Route
+							path="/all-users"
+							element={
+								<ProtectedRoutes>
+									<AllUsers />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/edit-profile"
+							element={
+								<ProtectedRoutes>
+									<UpdateProfile />
+								</ProtectedRoutes>
+							}
+						/>
 					</Routes>
 				</div>
 				<Routes>
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/chat" element={<Chat />} />
-					<Route path="/navbar" element={<NavBar />} />
 				</Routes>
 			</div>
 		</Router>

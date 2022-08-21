@@ -113,7 +113,7 @@ const NavBar = () => {
 									</ul>
 									<div className="nav-item logout">
 										<button
-											class="logout-button"
+											className="logout-button"
 											type="submit"
 											onClick={logoutHandler}
 										>

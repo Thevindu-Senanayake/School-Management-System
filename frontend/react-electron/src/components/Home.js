@@ -19,8 +19,8 @@ const Home = () => {
 		navigate("/chat");
 	};
 
-	const navbarHandler = () => {
-		navigate("/navbar");
+	const allUsersHandler = () => {
+		navigate("/all-users");
 	};
 
 	return (
@@ -28,7 +28,7 @@ const Home = () => {
 			<div>Home</div>
 			<button onClick={logoutHandler}>logout</button>
 			<button onClick={chatHandler}>Chat</button>
-			<button onClick={navbarHandler}>navbar</button>
+			<button onClick={allUsersHandler}>all users</button>
 		</Fragment>
 	);
 };
