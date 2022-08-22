@@ -8,11 +8,14 @@ import Register from "./components/auth/Register";
 
 import Home from "./components/Home";
 
+// Admin imports
 import AdminChat from "./components/chat/AdminChat";
-import UserChat from "./components/chat/UserChat";
-
 import AllUsers from "./components/pages/admin/AllUsers";
 import UpdateProfile from "./components/pages/admin/UpdateProfile";
+
+// User imports
+import UserChat from "./components/chat/UserChat";
+import Attendance from "./components/pages/Attendance";
 
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import { loadUser } from "./actions/authActions";
@@ -61,6 +64,14 @@ function App() {
 							}
 						/>
 						<Route
+							path="/register"
+							element={
+								<ProtectedRoutes isAdmin={true}>
+									<Register />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
 							path="/chat"
 							element={
 								<ProtectedRoutes>
@@ -69,10 +80,10 @@ function App() {
 							}
 						/>
 						<Route
-							path="/register"
+							path="/attendance/mark"
 							element={
-								<ProtectedRoutes isAdmin={true}>
-									<Register />
+								<ProtectedRoutes>
+									<Attendance />
 								</ProtectedRoutes>
 							}
 						/>

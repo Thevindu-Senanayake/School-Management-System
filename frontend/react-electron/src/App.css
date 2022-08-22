@@ -233,7 +233,7 @@ a {
 	display: grid;
 	grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "new-msg-cont chat-area" 78px/270px 1fr;
 	min-width: 1080px;
-	max-width: 1300px;
+	max-width: 1800px;
 	max-height: 1200px;
 	width: 250vw;
 	height: 99.9vh;
@@ -242,6 +242,21 @@ a {
 	background: #1a1a1a;
 	/* font-size: 10px; */
 }
+/* @media screen and (min-width: 1300px) {
+	#chat-cont {
+		display: grid;
+		grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "new-msg-cont chat-area" 78px/270px 1fr;
+		min-width: 1200px;
+		max-width: 2500px;
+		max-height: 1200px;
+		width: 250vw;
+		height: 99.9vh;
+		background: cover;
+		border: 1px solid white;
+		background: #1a1a1a;
+		/* font-size: 10px;
+	}
+}*/
 #search-cont,
 #conversation-list {
 	background: #242527;
@@ -320,6 +335,7 @@ a {
 	white-space: nowrap;
 	overflow-x: hidden;
 	text-overflow: ellipsis;
+	text-transform: capitalize;
 }
 .conv-msg {
 	grid-column: span 2;
@@ -432,10 +448,12 @@ a {
 .chat-send-icon {
 	width: 30px;
 	height: 30px;
+	cursor: pointer;
 }
 .chat-insert-icon {
 	height: 30px;
 	margin-left: 8px;
+	cursor: pointer;
 }
 ::-webkit-scrollbar {
 	display: none;
@@ -560,6 +578,7 @@ input[type="number"] {
 	margin-bottom: 30px;
 	text-align: center;
 	color: #ff2f2f;
+	text-transform: capitalize;
 }
 
 .input-box {
@@ -801,7 +820,7 @@ td {
 	border: 2px solid rgb(160, 160, 160);
 }
 
-/* User-Attendance */
+/* User-mark-Attendance */
 .user-attendance-container {
 	display: flex;
 }
@@ -829,6 +848,7 @@ td {
 	margin-bottom: 30px;
 	text-align: center;
 	color: white;
+	text-transform: capitalize;
 }
 
 .user-attendence-btn {
@@ -980,7 +1000,17 @@ td {
 	/* color: $bgcolor-2; */
 	font-size: 2rem;
 }
-
+#submit-btn {
+	width: 130px;
+	background: #1bb694;
+	font-size: 1rem;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin-left: 190px;
+}
 /*User-Chat-App */
 #container {
 	width: 100%;

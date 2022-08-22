@@ -77,8 +77,6 @@ export const getAdmins = () => async (dispatch) => {
 
 		const { data } = await axios.get("/api/v1/auth/admins");
 
-		console.log(data);
-
 		dispatch({
 			type: ADMINS_SUCCESS,
 			payload: data.admins,

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
 
 import { clearErrors } from "../../actions/authActions";
 import { getAdmins } from "../../actions/userActions";
@@ -11,17 +12,23 @@ import Loader from "../layout/Loader";
 const AdminChat = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { admins, error, loading } = useSelector((state) => state.admins);
+	const { user } = useSelector((state) => state.auth);
 
 	useEffect(() => {
+		if (user.role === "admin" || user.role === "god") {
+			navigate("/admin/chat");
+		}
+
 		dispatch(getAdmins());
 
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, alert, error]);
+	}, [dispatch, alert, error, navigate, user.role]);
 	return (
 		<Fragment>
 			{loading ? (
