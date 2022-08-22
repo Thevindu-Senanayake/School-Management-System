@@ -9,6 +9,12 @@ import {
 	UPDATE_USER_REQUEST,
 	UPDATE_USER_SUCCESS,
 	UPDATE_USER_FAIL,
+	ADMIN_CONTACTS_REQUEST,
+	ADMIN_CONTACTS_SUCCESS,
+	ADMIN_CONTACTS_FAIL,
+	ADMINS_REQUEST,
+	ADMINS_SUCCESS,
+	ADMINS_FAIL,
 	CLEAR_ERRORS,
 } from "../constants/userConstants";
 
@@ -26,6 +32,60 @@ export const getAllUsers = () => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: ALL_USERS_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Get Admin Contacts (Admin)
+export const getAdminContacts = (userId) => async (dispatch) => {
+	try {
+		dispatch({ type: ADMIN_CONTACTS_REQUEST });
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		const userData = {
+			userId: userId,
+		};
+
+		const { data } = await axios.post(
+			"/api/v1/auth/admin/contacts",
+			userData,
+			config
+		);
+
+		dispatch({
+			type: ADMIN_CONTACTS_SUCCESS,
+			payload: data.users,
+		});
+	} catch (error) {
+		dispatch({
+			type: ADMIN_CONTACTS_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Get Admins
+export const getAdmins = () => async (dispatch) => {
+	try {
+		dispatch({ type: ADMINS_REQUEST });
+
+		const { data } = await axios.get("/api/v1/auth/admins");
+
+		console.log(data);
+
+		dispatch({
+			type: ADMINS_SUCCESS,
+			payload: data.admins,
+		});
+	} catch (error) {
+		dispatch({
+			type: ADMINS_FAIL,
 			payload: error.response.data.message,
 		});
 	}

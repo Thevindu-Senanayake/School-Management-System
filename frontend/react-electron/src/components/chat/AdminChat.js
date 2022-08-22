@@ -1,33 +1,32 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
 
 import { clearErrors } from "../../actions/authActions";
+import { getAdminContacts } from "../../actions/userActions";
 
 import NavBar from "../layout/NavBar";
 import Loader from "../layout/Loader";
 
-const Chat = () => {
+const AdminChat = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
-	const { isAuthenticated, error, user, loading } = useSelector(
-		(state) => state.auth
+	const { users, error, loading } = useSelector(
+		(state) => state.adminContacts
 	);
+	const { user, loading: authLoading } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		if (loading === false && !isAuthenticated) {
-			navigate("/login");
+		if (!authLoading) {
+			dispatch(getAdminContacts(user._id));
 		}
 
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, isAuthenticated, alert, error, navigate, loading]);
-
+	}, [dispatch, alert, error, authLoading, user._id]);
 	return (
 		<Fragment>
 			{loading ? (
@@ -41,23 +40,23 @@ const Chat = () => {
 								<input type="text" placeholder="Search" />
 							</div>
 							<div id="conversation-list">
-								<div className="conversation">
-									<img src="images/avatar.png" alt="Ankit" />
-									<div className="title-text">
-										{user && user.name && user.name}
+								{users.map((user) => (
+									<div className="conversation" key={user._id}>
+										<img src="../images/avatar.png" alt="avatar" />
+										<div className="title-text">{user.userName}</div>
+										<h3 className="status-tag">
+											<span className="online"></span>
+											online
+										</h3>
+										<div className="conv-msg">Sample</div>
 									</div>
-									<h3 className="status-tag">
-										<span className="online"></span>
-										online
-									</h3>
-									<div className="conv-msg">Sample</div>
-								</div>
+								))}
 							</div>
 
 							<div id="chat-name">
 								<span>Username</span>
 								<img
-									src="icons/delete_black_24dp.svg"
+									src="../icons/delete_black_24dp.svg"
 									alt="delete chat"
 								/>
 							</div>
@@ -98,17 +97,17 @@ const Chat = () => {
 							<div id="chat-area">
 								<img
 									className="chat-insert-icon"
-									src="icons/attach-svgrepo-com.svg"
+									src="../icons/attach-svgrepo-com.svg"
 									alt="add file"
 								/>
 								<input
-									class="send-msg"
+									className="send-msg"
 									type="text"
 									placeholder="Type your message"
 								/>
 								<img
 									className="chat-send-icon"
-									src="icons/message-send-svgrepo-com.svg"
+									src="../icons/message-send-svgrepo-com.svg"
 									alt="Send Icon"
 								/>
 							</div>
@@ -120,4 +119,4 @@ const Chat = () => {
 	);
 };
 
-export default Chat;
+export default AdminChat;

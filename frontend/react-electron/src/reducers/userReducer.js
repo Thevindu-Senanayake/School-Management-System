@@ -9,6 +9,12 @@ import {
 	UPDATE_USER_SUCCESS,
 	UPDATE_USER_FAIL,
 	UPDATE_USER_RESET,
+	ADMIN_CONTACTS_REQUEST,
+	ADMIN_CONTACTS_SUCCESS,
+	ADMIN_CONTACTS_FAIL,
+	ADMINS_REQUEST,
+	ADMINS_SUCCESS,
+	ADMINS_FAIL,
 } from "../constants/userConstants";
 
 export const updateUserReducer = (state = {}, action) => {
@@ -61,6 +67,62 @@ export const allUsersReducer = (state = { users: [] }, action) => {
 			};
 
 		case ALL_USERS_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+
+		default:
+			return state;
+	}
+};
+
+export const adminContactsReducer = (state = { users: [] }, action) => {
+	switch (action.type) {
+		case ADMIN_CONTACTS_REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+
+		case ADMIN_CONTACTS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				users: action.payload,
+			};
+
+		case ADMIN_CONTACTS_FAIL:
+			return {
+				...state,
+				loading: false,
+				error: action.payload,
+			};
+
+		default:
+			return state;
+	}
+};
+
+export const adminsReducer = (state = { admins: [] }, action) => {
+	switch (action.type) {
+		case ADMINS_REQUEST:
+			return {
+				...state,
+				loading: true,
+				error: null,
+			};
+
+		case ADMINS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				admins: action.payload,
+			};
+
+		case ADMINS_FAIL:
 			return {
 				...state,
 				loading: false,

@@ -63,10 +63,18 @@ const NavBar = () => {
 													</Link>
 												</li>
 												<li className="nav-item">
-													<Link to="/attendance">
-														<i className="fas fa-chart-bar navbar-icon"></i>
-														<span className="nav-item-text">
-															Attendance
+													<Link to="/attendance/mark">
+														<i className="fas fa-user-plus navbar-icon"></i>
+														<span className="nav-item-text nav-item-text-resized">
+															Mark Attendance
+														</span>
+													</Link>
+												</li>
+												<li className="nav-item">
+													<Link to="/attendance/view">
+														<i className="fas fa-users navbar-icon"></i>
+														<span className="nav-item-text nav-item-text-resized">
+															View Attendance
 														</span>
 													</Link>
 												</li>
@@ -77,7 +85,7 @@ const NavBar = () => {
 												user.role === "god") && (
 												<Fragment>
 													<li className="nav-item">
-														<Link to="/chat">
+														<Link to="/admin/chat">
 															<i className="fas fa-comment navbar-icon"></i>
 															<span className="nav-item-text">
 																Message

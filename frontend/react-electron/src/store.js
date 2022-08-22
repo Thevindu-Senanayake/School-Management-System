@@ -7,6 +7,8 @@ import {
 	allUsersReducer,
 	userDetailsReducer,
 	updateUserReducer,
+	adminContactsReducer,
+	adminsReducer,
 } from "./reducers/userReducer";
 
 const reducer = combineReducers({
@@ -14,6 +16,8 @@ const reducer = combineReducers({
 	allUsers: allUsersReducer,
 	userDetails: userDetailsReducer,
 	updateUser: updateUserReducer,
+	admins: adminsReducer,
+	adminContacts: adminContactsReducer,
 });
 
 const initialState = {};

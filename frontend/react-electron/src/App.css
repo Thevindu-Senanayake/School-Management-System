@@ -173,7 +173,7 @@ nav:hover .nav-item-text {
 }
 a {
 	width: 280px;
-	font-size: 14px;
+	font-size: 10px;
 	color: rgb(85, 83, 83);
 	display: table;
 	padding: 10px;
@@ -198,6 +198,9 @@ a {
 .nav-item:hover i {
 	color: #34af6d;
 	transition: 0.5s;
+}
+.nav-item-text-resized {
+	font-size: 13px;
 }
 .logout button {
 	all: unset;
@@ -350,6 +353,7 @@ a {
 	font-size: 1.5rem;
 	box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
 	padding: 0 20px;
+	text-transform: uppercase;
 }
 
 #chat-name > imgchat-areasend-msg > img {
@@ -385,23 +389,20 @@ a {
 	margin-bottom: 5px;
 	width: fit-content;
 }
-
 .your-msg {
 	align-self: flex-end;
 }
-
 .your-msg .msg-text {
 	background: #6fbced;
 	color: #eee;
 	border: 1px solid #6fbced;
 	border-radius: 18px 18px 0px 18px;
 }
-
 .their-msg .msg-text {
 	background: #58b666;
 	color: #111;
 	border: 1px solid #58b666;
-	border-radius: 18px 18px 1px;
+	border-radius: 18px 18px 18px 0;
 }
 #chat-area {
 	display: grid;

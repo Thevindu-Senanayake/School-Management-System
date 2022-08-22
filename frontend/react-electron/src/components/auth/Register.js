@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,22 +11,15 @@ const Register = () => {
 
 	const alert = useAlert();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
-	const { isAuthenticated, error, loading } = useSelector(
-		(state) => state.auth
-	);
+	const { error, loading } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		if (isAuthenticated) {
-			navigate("/");
-		}
-
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, isAuthenticated, alert, error, navigate]);
+	}, [dispatch, alert, error]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();

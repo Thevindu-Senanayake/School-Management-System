@@ -8,10 +8,11 @@ import Register from "./components/auth/Register";
 
 import Home from "./components/Home";
 
-import Chat from "./components/chat/Chat";
+import AdminChat from "./components/chat/AdminChat";
+import UserChat from "./components/chat/UserChat";
 
 import AllUsers from "./components/pages/admin/AllUsers";
-import UpdateProfile from "./components/pages/admin/UpdateProfile"
+import UpdateProfile from "./components/pages/admin/UpdateProfile";
 
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import { loadUser } from "./actions/authActions";
@@ -38,7 +39,7 @@ function App() {
 						<Route
 							path="/all-users"
 							element={
-								<ProtectedRoutes>
+								<ProtectedRoutes isAdmin={true}>
 									<AllUsers />
 								</ProtectedRoutes>
 							}
@@ -46,8 +47,32 @@ function App() {
 						<Route
 							path="/edit-profile"
 							element={
-								<ProtectedRoutes>
+								<ProtectedRoutes isAdmin={true}>
 									<UpdateProfile />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/admin/chat"
+							element={
+								<ProtectedRoutes isAdmin={true}>
+									<AdminChat />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/chat"
+							element={
+								<ProtectedRoutes>
+									<UserChat />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/register"
+							element={
+								<ProtectedRoutes isAdmin={true}>
+									<Register />
 								</ProtectedRoutes>
 							}
 						/>
@@ -55,8 +80,6 @@ function App() {
 				</div>
 				<Routes>
 					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/chat" element={<Chat />} />
 				</Routes>
 			</div>
 		</Router>

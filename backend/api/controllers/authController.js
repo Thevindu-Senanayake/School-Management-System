@@ -125,6 +125,31 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
 	});
 });
 
+// Get all users except me	=> /api/v1/admin/contacts
+exports.adminContacts = catchAsyncErrors(async (req, res, next) => {
+	const users = await User.find();
+
+	const { userId } = req.body;
+
+	const index = users.findIndex((user) => user._id.toString() === userId);
+	users.splice(index, 1);
+
+	res.status(200).json({
+		success: true,
+		users,
+	});
+});
+
+// Get admins	=> /api/v1/admins
+exports.getAdmins = catchAsyncErrors(async (req, res, next) => {
+	const admins = await User.find({ role: "admin" });
+
+	res.status(200).json({
+		success: true,
+		admins,
+	});
+});
+
 // Get specific user Details by id	=> /api/v1/admin/user/:id
 exports.getSingleUserDetails = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.params.id);
