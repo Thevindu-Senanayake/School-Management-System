@@ -44,18 +44,21 @@ const AllUsers = () => {
 										</tr>
 									</thead>
 									<tbody>
-										{users.forEach((user) => {
+										{users.map((user) => (
 											<tr key={user.userName}>
 												<td>
 													<div className="all-users-select">
 														<select id="all-users-standard-select">
 															<option value="Role 2">
-																{user.role}
+																{user.role === "god"
+																	? "admin"
+																	: user.role}
 															</option>
 															<option value="Role 3">
-																{user.role === "admin"
+																{user.role === "admin" ||
+																user.role === "god"
 																	? "user"
-																	: (user.role === "user") &
+																	: user.role === "user" &&
 																	  "admin"}
 															</option>
 														</select>
@@ -63,8 +66,8 @@ const AllUsers = () => {
 													</div>
 												</td>
 												<td>{user.userName}</td>
-											</tr>;
-										})}
+											</tr>
+										))}
 										;
 									</tbody>
 								</table>
