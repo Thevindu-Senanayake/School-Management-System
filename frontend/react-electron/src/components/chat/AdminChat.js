@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 
 import { clearErrors } from "../../actions/authActions";
@@ -7,10 +8,12 @@ import { getAdminContacts } from "../../actions/userActions";
 
 import NavBar from "../layout/NavBar";
 import Loader from "../layout/Loader";
+import NotFound from "../layout/NotFound";
 
 const AdminChat = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { users, error, loading } = useSelector(
 		(state) => state.adminContacts
@@ -19,6 +22,24 @@ const AdminChat = () => {
 
 	useEffect(() => {
 		if (!authLoading) {
+			if (
+				!(user.role === "admin") &&
+				!(user.role === "god") &&
+				user.role === "user"
+			) {
+				navigate("/chat");
+			}
+
+			if (
+				!(user.role === "admin") &&
+				!(user.role === "god") &&
+				!(user.role === "user")
+			) {
+				return <NotFound />;
+			}
+		}
+
+		if (!authLoading) {
 			dispatch(getAdminContacts(user._id));
 		}
 
@@ -26,7 +47,7 @@ const AdminChat = () => {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, alert, error, authLoading, user._id]);
+	}, [dispatch, alert, error, authLoading, user._id, user.role, navigate]);
 	return (
 		<Fragment>
 			{loading ? (

@@ -3,9 +3,15 @@ import {
 	MARK_ATTENDANCE_REQUEST,
 	MARK_ATTENDANCE_SUCCESS,
 	MARK_ATTENDANCE_FAIL,
+	VIEW_ATTENDANCE_REQUEST,
+	VIEW_ATTENDANCE_SUCCESS,
+	VIEW_ATTENDANCE_FAIL,
+	ADMIN_ATTENDANCE_REQUEST,
+	ADMIN_ATTENDANCE_SUCCESS,
+	ADMIN_ATTENDANCE_FAIL,
 } from "../constants/attendanceConstants";
 
-// Update User Details (Admin)
+// Mark attendance
 export const markAttendance = (userData) => async (dispatch) => {
 	try {
 		dispatch({ type: MARK_ATTENDANCE_REQUEST });
@@ -29,6 +35,70 @@ export const markAttendance = (userData) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: MARK_ATTENDANCE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// View attendace
+export const viewAttendance = (className) => async (dispatch) => {
+	try {
+		dispatch({ type: VIEW_ATTENDANCE_REQUEST });
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		const userData = {
+			className: className,
+		};
+
+		const { data } = await axios.post(
+			"/api/v1/attendance/old",
+			userData,
+			config
+		);
+
+		dispatch({
+			type: VIEW_ATTENDANCE_SUCCESS,
+			payload: data.attendance,
+		});
+	} catch (error) {
+		dispatch({
+			type: VIEW_ATTENDANCE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Admin attendance
+export const adminAttendance = () => async (dispatch) => {
+	try {
+		dispatch({ type: ADMIN_ATTENDANCE_REQUEST });
+
+		let response = {};
+
+		const { data } = await axios.get("api/v1/attendance/admin/all");
+
+		for (let i = 6; i < 14; i++) {
+			const gradeName = `Grade ${i}`;
+			response[gradeName] = [];
+			data["attendance"].forEach((record) => {
+				if (record["className"].indexOf(String(i)) > -1) {
+					response[gradeName].push(record);
+				}
+			});
+		}
+
+		dispatch({
+			type: ADMIN_ATTENDANCE_SUCCESS,
+			payload: response,
+		});
+	} catch (error) {
+		dispatch({
+			type: ADMIN_ATTENDANCE_FAIL,
 			payload: error.response.data.message,
 		});
 	}

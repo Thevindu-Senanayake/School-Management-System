@@ -1,36 +1,40 @@
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { logOut } from "../actions/authActions";
-import { useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 
+import { clearErrors } from "../actions/authActions";
+import Loader from "./layout/Loader";
+
 const Home = () => {
+	const navigate = useNavigate();
 	const alert = useAlert();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
-	const logoutHandler = () => {
-		dispatch(logOut());
-		alert.success("Logged out successfully");
-	};
-
-	const chatHandler = () => {
-		navigate("/chat");
-	};
-
-	const allUsersHandler = () => {
-		navigate("/all-users");
-	};
-
-	return (
-		<Fragment>
-			<div>Home</div>
-			<button onClick={logoutHandler}>logout</button>
-			<button onClick={chatHandler}>Chat</button>
-			<button onClick={allUsersHandler}>all users</button>
-		</Fragment>
+	const { user, loading, error, isAuthenticated } = useSelector(
+		(state) => state.auth
 	);
+
+	useEffect(() => {
+		if (!isAuthenticated) {
+			navigate("/login");
+		}
+
+		if (!loading && (user.role === "admin" || user.role === "god")) {
+			navigate("/admin/chat");
+		}
+
+		if (!loading && user.role === "user") {
+			navigate("/chat");
+		}
+
+		if (error) {
+			alert.error(error);
+			dispatch(clearErrors());
+		}
+	}, [loading, navigate, user.role, alert, dispatch, error, isAuthenticated]);
+
+	return <Fragment>{loading && <Loader />}</Fragment>;
 };
 
 export default Home;

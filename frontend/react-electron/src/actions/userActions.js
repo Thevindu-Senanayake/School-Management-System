@@ -109,7 +109,7 @@ export const getUserDetails = (id) => async (dispatch) => {
 };
 
 // Update User Details (Admin)
-export const updateUser = (id, userData) => async (dispatch) => {
+export const updateUser = (userData) => async (dispatch) => {
 	try {
 		dispatch({ type: UPDATE_USER_REQUEST });
 
@@ -120,7 +120,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.put(
-			`/api/v1/auth/admin/user/${id}`,
+			`/api/v1/auth/admin/update-user`,
 			userData,
 			config
 		);
@@ -130,6 +130,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
 			payload: data.success,
 		});
 	} catch (error) {
+		console.log(error);
 		dispatch({
 			type: UPDATE_USER_FAIL,
 			payload: error.response.data.message,

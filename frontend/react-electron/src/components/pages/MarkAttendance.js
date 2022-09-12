@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors } from "../../actions/userActions";
 import { markAttendance } from "../../actions/attendanceActions";
 
-const Attendance = () => {
+const MarkAttendance = () => {
 	const [girls, setGirls] = useState(0);
 	const [boys, setBoys] = useState(0);
 	const [className, setClassName] = useState("");
@@ -34,7 +34,7 @@ const Attendance = () => {
 		}
 
 		if (isMarked) {
-			alert.success("Attendance successfully submitted");
+			alert.success("You have already submitted the attendance for today");
 			navigate("/chat");
 		}
 	}, [dispatch, alert, error, user.userName, user.role, navigate, isMarked]);
@@ -54,6 +54,8 @@ const Attendance = () => {
 			alert.error("Attendance should not be greater than 50");
 		} else {
 			dispatch(markAttendance(formData));
+			alert.success("Attendance successfully submitted");
+			navigate("/chat");
 		}
 	};
 
@@ -109,4 +111,4 @@ const Attendance = () => {
 	);
 };
 
-export default Attendance;
+export default MarkAttendance;

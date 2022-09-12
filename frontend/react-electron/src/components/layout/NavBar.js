@@ -52,16 +52,16 @@ const NavBar = () => {
 								</div>
 								<div className="nav-elements">
 									<ul>
-										{user && user.role === "user" && (
+										<li className="nav-item">
+											<Link to="/">
+												<i className="fas fa-comment navbar-icon"></i>
+												<span className="nav-item-text">
+													Message
+												</span>
+											</Link>
+										</li>
+										{user && user.role === "user" ? (
 											<Fragment>
-												<li className="nav-item">
-													<Link to="/chat">
-														<i className="fas fa-comment navbar-icon"></i>
-														<span className="nav-item-text">
-															Message
-														</span>
-													</Link>
-												</li>
 												<li className="nav-item">
 													<Link to="/attendance/mark">
 														<i className="fas fa-user-plus navbar-icon"></i>
@@ -79,19 +79,10 @@ const NavBar = () => {
 													</Link>
 												</li>
 											</Fragment>
-										)}
-										{user &&
+										) : (
 											(user.role === "admin" ||
 												user.role === "god") && (
 												<Fragment>
-													<li className="nav-item">
-														<Link to="/admin/chat">
-															<i className="fas fa-comment navbar-icon"></i>
-															<span className="nav-item-text">
-																Message
-															</span>
-														</Link>
-													</li>
 													<li className="nav-item">
 														<Link to="/all-users">
 															<i className="fas fa-database navbar-icon"></i>
@@ -117,7 +108,8 @@ const NavBar = () => {
 														</Link>
 													</li>
 												</Fragment>
-											)}
+											)
+										)}
 									</ul>
 									<div className="nav-item logout">
 										<button

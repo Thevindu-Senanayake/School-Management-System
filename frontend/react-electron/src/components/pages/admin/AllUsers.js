@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 
 import { clearErrors } from "../../../actions/authActions";
-import { getAllUsers } from "../../../actions/userActions";
+import { getAllUsers, updateUser } from "../../../actions/userActions";
 
 import NavBar from "../../layout/NavBar";
 import Loader from "../../layout/Loader";
@@ -13,18 +13,44 @@ const AllUsers = () => {
 	const dispatch = useDispatch();
 
 	const { loading, users, error } = useSelector((state) => state.allUsers);
+	const {
+		loading: updateLoading,
+		success,
+		error: updateError,
+	} = useSelector((state) => state.allUsers);
 
 	useEffect(() => {
 		dispatch(getAllUsers());
+
+		if (updateError) {
+			alert.error(updateError);
+			dispatch(clearErrors());
+		}
 
 		if (error) {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, alert, error]);
+	}, [dispatch, alert, error, updateError, success]);
+
+	const changeRole = (user, role) => {
+		const userData = {
+			userName: user.userName,
+			role: role,
+			id: user._id,
+		};
+
+		dispatch(updateUser(userData));
+
+		if (success) {
+			alert.success(
+				`successfully update ${user.userName}'s role to ${role}`
+			);
+		}
+	};
 	return (
 		<Fragment>
-			{loading ? (
+			{loading || updateLoading ? (
 				<Loader />
 			) : (
 				<Fragment>
@@ -48,13 +74,18 @@ const AllUsers = () => {
 											<tr key={user.userName}>
 												<td>
 													<div className="all-users-select">
-														<select id="all-users-standard-select">
-															<option value="Role 2">
+														<select
+															id="all-users-standard-select"
+															onChange={(e) =>
+																changeRole(user, e.target.value)
+															}
+														>
+															<option>
 																{user.role === "god"
 																	? "admin"
 																	: user.role}
 															</option>
-															<option value="Role 3">
+															<option>
 																{user.role === "admin" ||
 																user.role === "god"
 																	? "user"

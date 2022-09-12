@@ -8,6 +8,7 @@ import { getAdmins } from "../../actions/userActions";
 
 import NavBar from "../layout/NavBar";
 import Loader from "../layout/Loader";
+import NotFound from "../layout/NotFound";
 
 const AdminChat = () => {
 	const alert = useAlert();
@@ -15,11 +16,21 @@ const AdminChat = () => {
 	const navigate = useNavigate();
 
 	const { admins, error, loading } = useSelector((state) => state.admins);
-	const { user } = useSelector((state) => state.auth);
+	const { user, loading: authLoading } = useSelector((state) => state.auth);
 
 	useEffect(() => {
-		if (user.role === "admin" || user.role === "god") {
-			navigate("/admin/chat");
+		if (!authLoading) {
+			if (user.role === "admin" || user.role === "god") {
+				navigate("/admin/chat");
+			}
+
+			if (
+				!(user.role === "admin") &&
+				!(user.role === "god") &&
+				!(user.role === "user")
+			) {
+				return <NotFound />;
+			}
 		}
 
 		dispatch(getAdmins());
@@ -28,7 +39,7 @@ const AdminChat = () => {
 			alert.error(error);
 			dispatch(clearErrors());
 		}
-	}, [dispatch, alert, error, navigate, user.role]);
+	}, [dispatch, alert, error, navigate, user.role, authLoading]);
 	return (
 		<Fragment>
 			{loading ? (

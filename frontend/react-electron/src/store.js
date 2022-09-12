@@ -10,7 +10,10 @@ import {
 	adminContactsReducer,
 	adminsReducer,
 } from "./reducers/userReducer";
-import { markAttendaceReducer } from "./reducers/attendanceReducer";
+import {
+	markAttendaceReducer,
+	viewAttendaceReducer,
+} from "./reducers/attendanceReducer";
 
 const reducer = combineReducers({
 	auth: authReducer,
@@ -20,6 +23,7 @@ const reducer = combineReducers({
 	admins: adminsReducer,
 	adminContacts: adminContactsReducer,
 	markAttendance: markAttendaceReducer,
+	viewAttendance: viewAttendaceReducer,
 });
 
 const initialState = {};

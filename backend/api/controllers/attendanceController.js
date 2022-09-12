@@ -6,7 +6,7 @@ const { getDate, getMonth } = require("../utils/timeFormatter");
 
 // Mark attendance  => /api/v1/attendance/mark
 exports.markAttendance = catchAsyncErrors(async (req, res, next) => {
-	const { date, month, girls, boys, className } = req.body;
+	const { girls, boys, className } = req.body;
 
 	// check if each input is present
 	if (!girls) {
@@ -49,7 +49,11 @@ exports.getOldAttendance = catchAsyncErrors(async (req, res, next) => {
 		className: className,
 	});
 
-	if (attendance) {
+	if (attendance.length == 0) {
+		return next(new ErrorHandler("can not find the records"));
+	}
+
+	if (attendance && attendance.length > 0) {
 		res.status(200).json({
 			success: true,
 			attendance,

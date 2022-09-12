@@ -170,10 +170,10 @@ exports.getSingleUserDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updateUserDetailsByAdmin = catchAsyncErrors(async (req, res, next) => {
 	const newUserData = {
 		userName: req.body.userName,
-		// role: req.body.role,
+		role: req.body.role,
 	};
 
-	const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+	const user = await User.findByIdAndUpdate(req.body.id, newUserData, {
 		new: true,
 		runValidators: true,
 		useFindAndModify: false,

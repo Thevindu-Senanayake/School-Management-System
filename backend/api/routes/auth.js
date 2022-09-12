@@ -36,12 +36,15 @@ router
 router
 	.route("/admin/user/:id")
 	.get(isAuthenticatedUser, authorizeRoles("admin,god"), getSingleUserDetails)
+	.delete(isAuthenticatedUser, authorizeRoles("god"), deleteUser);
+
+router
+	.route("/admin/update-user")
 	.put(
 		isAuthenticatedUser,
 		authorizeRoles("admin,god"),
 		updateUserDetailsByAdmin
-	)
-	.delete(isAuthenticatedUser, authorizeRoles("god"), deleteUser);
+	);
 
 router.route("/admins").get(isAuthenticatedUser, getAdmins);
 router

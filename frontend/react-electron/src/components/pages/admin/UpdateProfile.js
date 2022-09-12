@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import NavBar from "../../layout/NavBar";
-
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
+
+import NavBar from "../../layout/NavBar";
+import NotFound from "../../layout/NotFound";
+
 import { updateUser, clearErrors } from "../../../actions/userActions";
 import { loadUser } from "../../../actions/authActions";
 import { UPDATE_USER_RESET } from "../../../constants/userConstants";
@@ -33,20 +34,30 @@ const UpdateProfile = () => {
 				type: UPDATE_USER_RESET,
 			});
 		}
-	}, [dispatch, isUpdated, alert, error, navigate, user]);
+	}, [dispatch, isUpdated, alert, error, user.userName]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 
 		const formData = new FormData();
 		formData.set("userName", name);
+		formData.set("role", user.role);
+		formData.set("id", user._id);
 
-		dispatch(updateUser(user._id, formData));
+		dispatch(updateUser(formData));
 		dispatch(loadUser());
 	};
 
 	const cancelHandler = (e) => {
 		e.preventDefault();
+
+		if (user.role === "admin" || user.role === "god") {
+			navigate("/admin/chat");
+		} else if (user.role === "admin") {
+			navigate("/admin/chat");
+		} else {
+			return <NotFound />;
+		}
 	};
 
 	return (

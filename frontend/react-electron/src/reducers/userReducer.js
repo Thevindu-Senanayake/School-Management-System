@@ -30,6 +30,7 @@ export const updateUserReducer = (state = {}, action) => {
 				...state,
 				loading: false,
 				isUpdated: action.payload,
+				success: true,
 			};
 
 		case UPDATE_USER_RESET:
@@ -43,6 +44,7 @@ export const updateUserReducer = (state = {}, action) => {
 				...state,
 				loading: false,
 				error: action.payload,
+				success: false,
 			};
 
 		default:

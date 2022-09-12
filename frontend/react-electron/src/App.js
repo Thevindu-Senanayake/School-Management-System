@@ -6,20 +6,22 @@ import "./App.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 
-import Home from "./components/Home";
-
 // Admin imports
 import AdminChat from "./components/chat/AdminChat";
 import AllUsers from "./components/pages/admin/AllUsers";
 import UpdateProfile from "./components/pages/admin/UpdateProfile";
+import Attendance from "./components/pages/admin/Attendance";
 
 // User imports
 import UserChat from "./components/chat/UserChat";
-import Attendance from "./components/pages/Attendance";
+import MarkAttendance from "./components/pages/MarkAttendance";
+import ViewAttendance from "./components/pages/ViewAttendance";
 
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
+
 import { loadUser } from "./actions/authActions";
 import store from "./store";
+import Home from "./components/Home";
 
 function App() {
 	useEffect(() => {
@@ -81,6 +83,22 @@ function App() {
 						/>
 						<Route
 							path="/attendance/mark"
+							element={
+								<ProtectedRoutes>
+									<MarkAttendance />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/attendance/view"
+							element={
+								<ProtectedRoutes>
+									<ViewAttendance />
+								</ProtectedRoutes>
+							}
+						/>
+						<Route
+							path="/attendance"
 							element={
 								<ProtectedRoutes>
 									<Attendance />

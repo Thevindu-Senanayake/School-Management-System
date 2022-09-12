@@ -42,11 +42,7 @@ const Login = () => {
 			) : (
 				<Fragment>
 					<div className="loginWrapper">
-						<form
-							action=""
-							className="form"
-							onSubmit={submitHandler}
-						>
+						<form action="" className="form" onSubmit={submitHandler}>
 							<img src="images/avatar.png" alt="avatar" />
 							<h2>Login</h2>
 							<div className="inputGroup">

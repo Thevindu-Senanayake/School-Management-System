@@ -5,13 +5,12 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "pwa-node",
+			"name": "Electron Main",
+			"program": "${workspaceFolder}/frontend/react-electron/public/main.js",
 			"request": "launch",
-			"name": "Launch Program",
-			"skipFiles": [
-				"<node_internals>/**"
-			],
-			"program": "${file}"
+			"runtimeExecutable": "C:/Users/Thevindu Senanayake/AppData/Roaming/npm/electron",
+			"skipFiles": ["<node_internals>/**"],
+			"type": "node"
 		}
 	]
 }
