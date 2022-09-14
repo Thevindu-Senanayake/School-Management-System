@@ -37,6 +37,7 @@ export const updateUserReducer = (state = {}, action) => {
 			return {
 				...state,
 				isUpdated: false,
+				success: false,
 			};
 
 		case UPDATE_USER_FAIL:
