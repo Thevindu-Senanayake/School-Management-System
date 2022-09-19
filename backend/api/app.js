@@ -16,9 +16,11 @@ app.use(fileUpload());
 // import all routes
 const auth = require("./routes/auth");
 const attendance = require("./routes/attendance");
+const message = require("./routes/message");
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/attendance", attendance);
+app.use("/api/v1/msg", message);
 
 // Middleware to handle errors
 app.use(errorMiddleware);

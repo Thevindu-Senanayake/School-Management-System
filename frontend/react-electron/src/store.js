@@ -14,6 +14,7 @@ import {
 	markAttendaceReducer,
 	viewAttendaceReducer,
 } from "./reducers/attendanceReducer";
+import { messagesReducer } from "./reducers/messageReducer";
 
 const reducer = combineReducers({
 	auth: authReducer,
@@ -24,6 +25,7 @@ const reducer = combineReducers({
 	adminContacts: adminContactsReducer,
 	markAttendance: markAttendaceReducer,
 	viewAttendance: viewAttendaceReducer,
+	messages: messagesReducer,
 });
 
 const initialState = {};

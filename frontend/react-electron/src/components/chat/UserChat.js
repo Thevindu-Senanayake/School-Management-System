@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
 
 import { clearErrors } from "../../actions/authActions";
 import { getAdmins } from "../../actions/userActions";
@@ -9,14 +10,19 @@ import { getAdmins } from "../../actions/userActions";
 import NavBar from "../layout/NavBar";
 import Loader from "../layout/Loader";
 import NotFound from "../layout/NotFound";
+import Contacts from "./Contacts";
+import ChatContainer from "./ChatContainer";
 
 const AdminChat = () => {
 	const alert = useAlert();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const socket = useRef();
 
 	const { admins, error, loading } = useSelector((state) => state.admins);
 	const { user, loading: authLoading } = useSelector((state) => state.auth);
+
+	const [currentChat, setCurrentChat] = useState(undefined);
 
 	useEffect(() => {
 		if (!authLoading) {
@@ -40,6 +46,18 @@ const AdminChat = () => {
 			dispatch(clearErrors());
 		}
 	}, [dispatch, alert, error, navigate, user.role, authLoading]);
+
+	useEffect(() => {
+		if (user) {
+			socket.current = io(process.env.REACT_APP_HOST);
+			socket.current.emit("add-user", user._id);
+		}
+	}, [user]);
+
+	const handleChatChange = (chat) => {
+		setCurrentChat(chat);
+	};
+
 	return (
 		<Fragment>
 			{loading ? (
@@ -52,78 +70,18 @@ const AdminChat = () => {
 							<div id="search-cont">
 								<input type="text" placeholder="Search" />
 							</div>
-							<div id="conversation-list">
-								{admins.map((admin) => (
-									<div className="conversation" key={admin._id}>
-										<img src="../images/avatar.png" alt="avatar" />
-										<div className="title-text">{admin.userName}</div>
-										<h3 className="status-tag">
-											<span className="online"></span>
-											online
-										</h3>
-										<div className="conv-msg">Sample</div>
-									</div>
-								))}
-							</div>
-
-							<div id="chat-name">
-								<span>Username</span>
-								<img
-									src="../icons/delete_black_24dp.svg"
-									alt="delete chat"
+							<Contacts
+								contacts={admins}
+								changeChat={handleChatChange}
+							/>
+							{currentChat === undefined ? (
+								<h1>select a chat</h1>
+							) : (
+								<ChatContainer
+									currentChat={currentChat}
+									socket={socket}
 								/>
-							</div>
-							<div id="msg-list">
-								<div className="msg-row their-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row your-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row their-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row their-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row your-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row their-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row your-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-								<div className="msg-row their-msg">
-									<div className="msg-text">Sample Text</div>
-									<div className="msg-time">Oct 04</div>
-								</div>
-							</div>
-							<div id="chat-area">
-								<img
-									className="chat-insert-icon"
-									src="../icons/attach-svgrepo-com.svg"
-									alt="add file"
-								/>
-								<input
-									className="send-msg"
-									type="text"
-									placeholder="Type your message"
-								/>
-								<img
-									className="chat-send-icon"
-									src="../icons/message-send-svgrepo-com.svg"
-									alt="Send Icon"
-								/>
-							</div>
+							)}
 						</div>
 					</div>
 				</Fragment>

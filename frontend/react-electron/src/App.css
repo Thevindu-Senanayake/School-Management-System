@@ -231,7 +231,8 @@ a {
 /* chat */
 #chat-cont {
 	display: grid;
-	grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "new-msg-cont chat-area" 78px/270px 1fr;
+	grid-template-columns: 1fr 4fr;
+	grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "conversation-list chat-area" 78px/270px 1fr;
 	min-width: 1080px;
 	max-width: 1800px;
 	max-height: 1200px;
@@ -263,6 +264,7 @@ a {
 }
 
 #search-cont {
+	overflow: hidden;
 	display: grid;
 	align-items: center;
 	grid-area: search-cont;
@@ -351,7 +353,6 @@ a {
 	font-size: 0.5rem;
 }
 
-#new-msg-cont,
 #chat-name,
 #chat-area-msg {
 	background: #242527;
@@ -379,7 +380,7 @@ a {
 #msg-list {
 	grid-area: msg-list;
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	padding: 0 20px;
 	overflow-y: scroll;
 }
@@ -436,21 +437,23 @@ a {
 }
 
 #chat-area input {
-	outline: none;
 	padding: 8px;
 	border: none;
-	color: white;
 	border-radius: 18px;
 	font-size: 1.1rem;
 	background-color: #5e616a;
 	width: 100%;
 }
 .chat-send-icon {
+	margin-top: 5px;
+	margin-left: 5px;
 	width: 30px;
 	height: 30px;
 	cursor: pointer;
 }
 .chat-insert-icon {
+	margin-top: 7px;
+	margin-right: 5px;
 	height: 30px;
 	margin-left: 8px;
 	cursor: pointer;
