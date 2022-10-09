@@ -4,7 +4,7 @@ const connectDatabase = require("./config/database");
 const httpServer = require("./socket");
 
 // setting up config file
-dotenv.config({ path: "backend/api/config/config.env" });
+dotenv.config({ path: "backend/config/config.env" });
 
 // connecting to database
 connectDatabase();

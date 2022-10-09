@@ -38,7 +38,7 @@ const NavBar = () => {
 			) : (
 				<Fragment>
 					<div className="navbar-container">
-						<nav>
+						<nav className="navbar">
 							<div className="navbar-content">
 								<div className="navbar-hedding-container">
 									<img
