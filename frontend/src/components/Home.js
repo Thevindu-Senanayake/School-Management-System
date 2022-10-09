@@ -34,7 +34,12 @@ const Home = () => {
 		}
 	}, [loading, navigate, user.role, alert, dispatch, error, isAuthenticated]);
 
-	return <Fragment>{loading && <Loader />}</Fragment>;
+	return (
+		<Fragment>
+			{loading && <Loader />}
+			<Loader />
+		</Fragment>
+	);
 };
 
 export default Home;

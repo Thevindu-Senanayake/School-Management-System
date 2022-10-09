@@ -1,10 +1,10 @@
-const app = require("./app");
-const connectDatabase = require("./config/database");
-
 const dotenv = require("dotenv");
 
+const connectDatabase = require("./config/database");
+const httpServer = require("./socket");
+
 // setting up config file
-dotenv.config({ path: "backend/api/config/config.env" });
+dotenv.config({ path: "backend/config/config.env" });
 
 // connecting to database
 connectDatabase();
@@ -16,10 +16,21 @@ process.on("uncaughtException", (err) => {
 	process.exit(1);
 });
 
-const server = app.listen(process.env.PORT, () => {
+const server = httpServer.listen(process.env.PORT, () => {
 	console.log(
 		`Server started on port ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
 	);
+});
+
+// Handle EADDRINUSE error
+server.on("error", (e) => {
+	if (e.code === "EADDRINUSE") {
+		console.log("Address in use, retrying...");
+		setTimeout(() => {
+			server.close();
+			server.listen(process.env.PORT);
+		}, 1000);
+	}
 });
 
 // handle unhadled promise rejection

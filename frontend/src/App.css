@@ -122,7 +122,7 @@ ul {
 	all: unset;
 }
 /* TODO: add hover effect to navbar */
-nav {
+.navbar {
 	position: sticky;
 	margin-top: 0vh;
 	bottom: 0;
@@ -231,7 +231,8 @@ a {
 /* chat */
 #chat-cont {
 	display: grid;
-	grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "new-msg-cont chat-area" 78px/270px 1fr;
+	grid-template-columns: 1fr 4fr;
+	grid: "search-cont chat-name" 71px "conversation-list msg-list" 1fr "conversation-list chat-area" 78px/270px 1fr;
 	min-width: 1080px;
 	max-width: 1800px;
 	max-height: 1200px;
@@ -263,6 +264,7 @@ a {
 }
 
 #search-cont {
+	overflow: hidden;
 	display: grid;
 	align-items: center;
 	grid-area: search-cont;
@@ -351,7 +353,6 @@ a {
 	font-size: 0.5rem;
 }
 
-#new-msg-cont,
 #chat-name,
 #chat-area-msg {
 	background: #242527;
@@ -379,7 +380,7 @@ a {
 #msg-list {
 	grid-area: msg-list;
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	padding: 0 20px;
 	overflow-y: scroll;
 }
@@ -436,21 +437,23 @@ a {
 }
 
 #chat-area input {
-	outline: none;
 	padding: 8px;
 	border: none;
-	color: white;
 	border-radius: 18px;
 	font-size: 1.1rem;
 	background-color: #5e616a;
 	width: 100%;
 }
 .chat-send-icon {
+	margin-top: 5px;
+	margin-left: 5px;
 	width: 30px;
 	height: 30px;
 	cursor: pointer;
 }
 .chat-insert-icon {
+	margin-top: 7px;
+	margin-right: 5px;
 	height: 30px;
 	margin-left: 8px;
 	cursor: pointer;
@@ -1378,4 +1381,42 @@ table thead tr {
 	background: #4ad489;
 	color: #fff;
 	transition: 0.5rem;
+}
+/* .emoji {
+	position: relative;
+}
+.emoji svg {
+	font-size: 1.5rem;
+	color: #ffff00c8;
+	cursor: pointer;
+}
+.emoji-picker-react {
+	position: absolute;
+	top: -350px;
+	background-color: #080420;
+	box-shadow: 0 5px 10px #9a86f3;
+	border-color: #9a86f3;
+}
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar {
+	background-color: #080420;
+	width: 5px;
+}
+/* .emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar &-thumb {
+	background-color: #9a86f3;
+} */
+.emoji-picker-react .emoji-categories button {
+	filter: contrast(0);
+}
+.emoji-picker-react .emoji-search {
+	background-color: transparent;
+	border-color: #9a86f3;
+}
+.emoji-picker-react .emoji-group:before {
+	background-color: #080420;
+}
+.button-container {
+	display: flex;
+	align-items: center;
+	color: white;
+	gap: 1rem;
 }

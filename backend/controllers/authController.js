@@ -129,9 +129,12 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
 exports.adminContacts = catchAsyncErrors(async (req, res, next) => {
 	const users = await User.find();
 
+	// get the current users id
 	const { userId } = req.body;
 
+	// get the index of current user
 	const index = users.findIndex((user) => user._id.toString() === userId);
+	// remove the current user from the user list so that a user cant message to themselves
 	users.splice(index, 1);
 
 	res.status(200).json({

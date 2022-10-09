@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
 
 // Encrypting password before saving user
 userSchema.pre("save", async function (next) {
+	// return to next middleware if password is not modified
 	if (!this.isModified("password")) {
 		next();
 	}
