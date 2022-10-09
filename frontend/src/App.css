@@ -191,6 +191,7 @@ a {
 	color: #fff;
 	padding: 10px;
 	border-radius: 7px;
+	list-style: none;
 }
 .nav-item:hover {
 	background: grey;
