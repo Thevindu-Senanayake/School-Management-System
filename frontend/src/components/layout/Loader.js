@@ -1,5 +1,5 @@
 import React from "react";
-// import logo from "../../../public/images/loader.gif";
+import logo from "../../assets/loader.gif";
 
 const Loader = () => {
 	return (
@@ -12,7 +12,7 @@ const Loader = () => {
 				alignItems: "center",
 			}}
 		>
-			<img src="./images/loader.gif" alt="loading..." />
+			<img src={logo} alt="loading..." />
 		</div>
 	);
 };
