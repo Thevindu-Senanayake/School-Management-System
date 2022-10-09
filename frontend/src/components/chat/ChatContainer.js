@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { getOldMessages, sendMessages } from "../../actions/messageAction";
 import { SEND_MESSAGES_RESET } from "../../constants/messageConstants";
 import { clearErrors } from "../../actions/userActions";
+import ChatInput from "./ChatInput";
 
 const ChatContainer = ({ currentChat, socket }) => {
 	const scrollRef = useRef();
@@ -15,7 +16,6 @@ const ChatContainer = ({ currentChat, socket }) => {
 	const [messages, setMessages] = useState([]);
 	const [newMessages, setNewMessages] = useState(null);
 	const [sendMessage, setSendMessage] = useState(null);
-	const [input, setInput] = useState("");
 
 	const {
 		messages: oldMessages,
@@ -42,7 +42,6 @@ const ChatContainer = ({ currentChat, socket }) => {
 	const handleSendMsg = (e, msg) => {
 		e.preventDefault();
 
-		setInput("");
 		setSendMessage(msg);
 		socket.current.emit("send-msg", {
 			to: currentChat._id,
@@ -100,31 +99,7 @@ const ChatContainer = ({ currentChat, socket }) => {
 						);
 					})}
 			</div>
-			<div id="chat-area">
-				<form
-					onSubmit={(e) => handleSendMsg(e, input)}
-					style={{ display: "flex", width: "100%" }}
-				>
-					<img
-						className="chat-insert-icon"
-						src="../icons/attach-svgrepo-com.svg"
-						alt="add file"
-					/>
-					<input
-						className="send-msg"
-						type="text"
-						placeholder="Type your message"
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-					/>
-					<img
-						className="chat-send-icon"
-						src="../icons/message-send-svgrepo-com.svg"
-						alt="Send Icon"
-						onClick={(e) => handleSendMsg(e, input)}
-					/>
-				</form>
-			</div>
+			<ChatInput handleSendMsg={handleSendMsg} />
 		</Fragment>
 	);
 };
