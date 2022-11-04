@@ -130,7 +130,6 @@ export const updateUser = (userData) => async (dispatch) => {
 			payload: data.success,
 		});
 	} catch (error) {
-		console.log(error);
 		dispatch({
 			type: UPDATE_USER_FAIL,
 			payload: error.response.data.message,

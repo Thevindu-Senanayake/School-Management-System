@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { v4 as uuidv4 } from "uuid";
 
+import { getTime } from "../../utils/timeUitilities";
+
 import { getOldMessages, sendMessages } from "../../actions/messageAction";
 import { SEND_MESSAGES_RESET } from "../../constants/messageConstants";
 import { clearErrors } from "../../actions/userActions";
@@ -39,23 +41,10 @@ const ChatContainer = ({ currentChat, socket }) => {
 		setMessages(oldMessages);
 	}, [oldMessages]);
 
-	const handleSendMsg = (e, msg) => {
-		e.preventDefault();
-
-		setSendMessage(msg);
-		socket.current.emit("send-msg", {
-			to: currentChat._id,
-			from: user._id,
-			msg,
-		});
-
-		dispatch(sendMessages(currentChat._id, user._id, msg));
-	};
-
 	useEffect(() => {
 		if (success) {
 			const msgs = [...messages];
-			msgs.push({ fromSelf: true, message: sendMessage });
+			msgs.push({ fromSelf: true, message: sendMessage, time: getTime() });
 			setMessages(msgs);
 			dispatch({ type: SEND_MESSAGES_RESET });
 		}
@@ -63,9 +52,8 @@ const ChatContainer = ({ currentChat, socket }) => {
 
 	useEffect(() => {
 		if (socket.current) {
-			socket.current.on("msg-recieve", (msg) => {
-				console.log(msg);
-				setNewMessages({ fromSelf: false, message: msg });
+			socket.current.on("msg-recieve", (msg, time) => {
+				setNewMessages({ fromSelf: false, message: msg, time: time });
 			});
 		}
 
@@ -75,6 +63,20 @@ const ChatContainer = ({ currentChat, socket }) => {
 	useEffect(() => {
 		scrollRef.current?.scrollIntoView({ behavior: "smooth" });
 	}, [messages]);
+
+	const handleSendMsg = (e, msg, time) => {
+		e.preventDefault();
+
+		setSendMessage(msg);
+		socket.current.emit("send-msg", {
+			to: currentChat._id,
+			from: user._id,
+			msg,
+			time,
+		});
+
+		dispatch(sendMessages(currentChat._id, user._id, msg, time));
+	};
 
 	return (
 		<Fragment>
@@ -94,7 +96,7 @@ const ChatContainer = ({ currentChat, socket }) => {
 								}`}
 							>
 								<div className="msg-text">{message.message}</div>
-								<div className="msg-time">Oct 04</div>
+								<div className="msg-time">{message.time}</div>
 							</div>
 						);
 					})}

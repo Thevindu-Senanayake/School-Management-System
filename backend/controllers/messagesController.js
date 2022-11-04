@@ -10,13 +10,14 @@ module.exports.getMessages = async (req, res, next) => {
 			},
 		}).sort({ updatedAt: 1 });
 
-		const projectedMessages = messages.map((msg) => {
+		const utilizedMessages = messages.map((msg) => {
 			return {
 				fromSelf: msg.sender.toString() === from,
-				message: msg.message.text,
+				message: msg.message,
+				time: msg.time,
 			};
 		});
-		res.json(projectedMessages);
+		res.json(utilizedMessages);
 	} catch (ex) {
 		next(ex);
 	}
@@ -26,7 +27,7 @@ module.exports.addMessage = async (req, res, next) => {
 	try {
 		const { from, to, message } = req.body;
 		const data = await Messages.create({
-			message: { text: message },
+			message: message,
 			users: [from, to],
 			sender: from,
 		});

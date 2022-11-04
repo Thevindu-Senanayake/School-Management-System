@@ -2,6 +2,8 @@ import React, { Fragment, useState } from "react";
 import Picker from "emoji-picker-react";
 import styled from "styled-components";
 
+import { getTime } from "../../utils/timeUitilities";
+
 const ChatInput = ({ handleSendMsg }) => {
 	const [input, setInput] = useState("");
 	const [emojiPanelVisibility, setEmojiPanelVisibility] = useState(false);
@@ -17,48 +19,17 @@ const ChatInput = ({ handleSendMsg }) => {
 	};
 
 	const sendChat = (event) => {
+		const time = getTime();
+
 		event.preventDefault();
 		if (input.length > 0) {
-			handleSendMsg(event, input);
+			handleSendMsg(event, input, time);
 			setInput("");
 		}
 	};
 
 	return (
 		<Fragment>
-			{/* <div id="chat-area">
-				<form
-					onSubmit={(e) => sendChat(e, input)}
-					style={{ display: "flex", width: "100%" }}
-				>
-					<div className="button-container">
-						<div className="emoji">
-							<img
-								className="chat-insert-icon"
-								src="../icons/attach-svgrepo-com.svg"
-								alt="add file"
-								onClick={toggleEmojiPanel}
-							/>
-							{emojiPanelVisibility && (
-								<Picker onEmojiClick={handleEmojiClick} />
-							)}
-						</div>
-					</div>
-					<input
-						className="send-msg"
-						type="text"
-						placeholder="Type your message"
-						value={input}
-						onChange={(e) => setInput(e.target.value)}
-					/>
-					<img
-						className="chat-send-icon"
-						src="../icons/message-send-svgrepo-com.svg"
-						alt="Send Icon"
-						onClick={(e) => sendChat(e)}
-					/>
-				</form>
-			</div> */}
 			<Container>
 				<div className="button-container">
 					<div className="emoji">

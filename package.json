@@ -8,8 +8,8 @@
 		"dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
 		"prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
 		"backend": "SET NODE_ENV=PRODUCTION& node backend/server",
-		"fronend": "cd frontend && yarn electron:serve",
-		"deploy:local": "concurrently -k \"yarn backend\" \"yarn fronend\""
+		"frontend": "cd frontend && yarn electron:serve",
+		"deploy:local": "concurrently -k \"yarn backend\" \"yarn frontend\""
 	},
 	"repository": {
 		"type": "git",
