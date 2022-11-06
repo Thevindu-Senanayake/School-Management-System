@@ -1,6 +1,6 @@
 const Messages = require("../models/message");
 
-module.exports.getMessages = async (req, res, next) => {
+exports.getMessages = async (req, res, next) => {
 	try {
 		const { from, to } = req.body;
 
@@ -23,7 +23,7 @@ module.exports.getMessages = async (req, res, next) => {
 	}
 };
 
-module.exports.addMessage = async (req, res, next) => {
+exports.addMessage = async (req, res, next) => {
 	try {
 		const { from, to, message } = req.body;
 		const data = await Messages.create({
@@ -43,3 +43,20 @@ module.exports.addMessage = async (req, res, next) => {
 		next(ex);
 	}
 };
+
+// Delete user	=> /api/v1/admin/user/:id
+exports.deleteMessage = catchAsyncErrors(async (req, res, next) => {
+	const message = await User.findById(req.params.id);
+
+	if (!message) {
+		return next(
+			new ErrorHandler(`message does not found with id: ${req.params.id}`)
+		);
+	}
+
+	await message.remove();
+
+	res.status(200).json({
+		success: true,
+	});
+});

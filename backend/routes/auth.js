@@ -36,10 +36,7 @@ router
 router
 	.route("/admin/user/:id")
 	.get(isAuthenticatedUser, authorizeRoles("admin,god"), getSingleUserDetails)
-	.delete(isAuthenticatedUser, authorizeRoles("god"), deleteUser);
-
-router
-	.route("/admin/update-user")
+	.delete(isAuthenticatedUser, authorizeRoles("god"), deleteUser)
 	.put(
 		isAuthenticatedUser,
 		authorizeRoles("admin,god"),

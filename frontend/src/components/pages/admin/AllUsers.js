@@ -28,10 +28,9 @@ const AllUsers = () => {
 		const userData = {
 			userName: user.userName,
 			role: role,
-			id: user._id,
 		};
 
-		dispatch(updateUser(userData));
+		dispatch(updateUser(userData, user._id));
 	};
 
 	useEffect(() => {

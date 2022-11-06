@@ -109,7 +109,7 @@ export const getUserDetails = (id) => async (dispatch) => {
 };
 
 // Update User Details (Admin)
-export const updateUser = (userData) => async (dispatch) => {
+export const updateUser = (userData, id) => async (dispatch) => {
 	try {
 		dispatch({ type: UPDATE_USER_REQUEST });
 
@@ -120,7 +120,7 @@ export const updateUser = (userData) => async (dispatch) => {
 		};
 
 		const { data } = await axios.put(
-			`/api/v1/auth/admin/update-user`,
+			`/api/v1/auth/admin/user/${id}`,
 			userData,
 			config
 		);

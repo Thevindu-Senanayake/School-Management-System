@@ -77,6 +77,10 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.user.id);
 
+	if (!user) {
+		return next(new ErrorHandler("Unable to find user", 501));
+	}
+
 	res.status(200).json({
 		success: true,
 		user,
@@ -94,6 +98,10 @@ exports.updateUserDetails = catchAsyncErrors(async (req, res, next) => {
 		runValidators: true,
 		useFindAndModify: false,
 	});
+
+	if (!user) {
+		return next(new ErrorHandler("Fail to update user details", 501));
+	}
 
 	res.status(200).json({
 		success: true,
@@ -119,6 +127,10 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
 	const users = await User.find();
 
+	if (!users || users.length == 0) {
+		return next(new ErrorHandler("Users are not found", 404));
+	}
+
 	res.status(200).json({
 		success: true,
 		users,
@@ -129,8 +141,16 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
 exports.adminContacts = catchAsyncErrors(async (req, res, next) => {
 	const users = await User.find();
 
+	if (!users || users.length == 0) {
+		return next(new ErrorHandler("Failed to find users", 404));
+	}
+
 	// get the current users id
 	const { userId } = req.body;
+
+	if (!userId) {
+		return next(new ErrorHandler("Your User Id is Not Specified", 400));
+	}
 
 	// get the index of current user
 	const index = users.findIndex((user) => user._id.toString() === userId);
@@ -147,6 +167,10 @@ exports.adminContacts = catchAsyncErrors(async (req, res, next) => {
 exports.getAdmins = catchAsyncErrors(async (req, res, next) => {
 	const admins = await User.find({ role: "admin" });
 
+	if (!admins || admins.length == 0) {
+		return next(new ErrorHandler("Admins are not found", 404));
+	}
+
 	res.status(200).json({
 		success: true,
 		admins,
@@ -159,7 +183,7 @@ exports.getSingleUserDetails = catchAsyncErrors(async (req, res, next) => {
 
 	if (!user) {
 		return next(
-			new ErrorHandler(`user does not found with id: ${req.params.id}`)
+			new ErrorHandler(`user does not found with id: ${req.params.id}`, 404)
 		);
 	}
 
@@ -169,18 +193,24 @@ exports.getSingleUserDetails = catchAsyncErrors(async (req, res, next) => {
 	});
 });
 
-// Update user Details	=> /api/v1/admin/user/:id/update
+// Update user Details	=> /api/v1/admin/user/:id
 exports.updateUserDetailsByAdmin = catchAsyncErrors(async (req, res, next) => {
 	const newUserData = {
 		userName: req.body.userName,
 		role: req.body.role,
 	};
 
-	const user = await User.findByIdAndUpdate(req.body.id, newUserData, {
+	const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
 		new: true,
 		runValidators: true,
 		useFindAndModify: false,
 	});
+
+	if (!user) {
+		return next(
+			new ErrorHandler(`user does not found with id: ${req.params.id}`, 404)
+		);
+	}
 
 	res.status(200).json({
 		success: true,
@@ -193,7 +223,7 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
 
 	if (!user) {
 		return next(
-			new ErrorHandler(`user does not found with id: ${req.params.id}`)
+			new ErrorHandler(`user does not found with id: ${req.params.id}`, 404)
 		);
 	}
 
