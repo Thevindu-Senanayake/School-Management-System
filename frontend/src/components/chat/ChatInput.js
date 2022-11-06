@@ -14,6 +14,8 @@ const ChatInput = ({ handleSendMsg }) => {
 
 	const handleEmojiClick = (emojiObject) => {
 		let message = input;
+		console.log(emojiObject);
+		console.log(emojiObject.emoji);
 		message += emojiObject.emoji;
 		setInput(message);
 	};
@@ -90,28 +92,17 @@ const Container = styled.div`
 				color: #ffff00c8;
 				cursor: pointer;
 			}
-			.emoji-picker-react {
+			.EmojiPickerReact {
 				position: absolute;
-				top: -350px;
+				top: -460px;
 				background-color: #1a1a1a;
 				box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
 				border-color: rgba(0, 0, 0, 0.25);
-				.emoji-group:before {
-					background-color: #2d2e31;
+				.epr-emoji-category-label {
+					background-color: #1a1a1a;
+					border: 1px solid white;
 				}
-				.emoji-scroll-wrapper::-webkit-scrollbar {
-					background-color: #2d2e31;
-					width: 5px;
-					&-thumb {
-						background-color: #2d2e31;
-					}
-				}
-				.emoji-categories {
-					button {
-						filter: contrast(0);
-					}
-				}
-				.emoji-search {
+				.epr-search {
 					background-color: transparent;
 					border-color: rgba(0, 0, 0, 0.25);
 				}

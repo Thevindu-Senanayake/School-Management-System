@@ -82,7 +82,7 @@ const ChatContainer = ({ currentChat, socket }) => {
 		<Fragment>
 			<div id="chat-name">
 				<span>{currentChat.userName}</span>
-				<img src="../icons/delete_black_24dp.svg" alt="delete chat" />
+				<img src="../icons/delete_white_24dp.svg" alt="delete chat" />
 			</div>
 			<div id="msg-list">
 				{messages &&

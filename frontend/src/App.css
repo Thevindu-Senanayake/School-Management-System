@@ -453,10 +453,9 @@ a {
 	cursor: pointer;
 }
 .chat-insert-icon {
-	margin-top: 7px;
-	margin-right: 5px;
+	margin-top: 5px;
+	margin-right: 15px;
 	height: 30px;
-	margin-left: 8px;
 	cursor: pointer;
 }
 ::-webkit-scrollbar {
