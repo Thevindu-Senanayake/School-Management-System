@@ -78,7 +78,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.user.id);
 
 	if (!user) {
-		return next(new ErrorHandler("Unable to find user", 501));
+		return next(new ErrorHandler("Unable to find user", 500));
 	}
 
 	res.status(200).json({

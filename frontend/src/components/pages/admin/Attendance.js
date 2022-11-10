@@ -14,7 +14,7 @@ const Attendance = () => {
 	let grades = [];
 
 	// const grades = [...attendance];
-	for (let i = 6; i < 14; i++) {
+	for (let i = 6; i < 10; i++) {
 		const gradeName = `Grade ${i}`;
 		grades.push(gradeName);
 	}
@@ -44,24 +44,26 @@ const Attendance = () => {
 											{attendance &&
 												attendance[grade].map((record) => (
 													<div className="card" key={record._id}>
-														<img
-															src="../images/avatar.png"
-															alt="avatar"
-														/>
+														<div className="admin-attendence-avater">
+															<img
+																src="../images/avatar.png"
+																alt="avatar"
+															/>
+														</div>
 														<h4>{record.className}</h4>
 														<div className="per">
 															<table>
 																<tbody>
 																	<tr>
 																		<td>
-																			<span>
+																			<button className="admin-attendance-value-button">
 																				{record.boys}
-																			</span>
+																			</button>
 																		</td>
 																		<td>
-																			<span>
+																			<button className="admin-attendance-value-button">
 																				{record.girls}
-																			</span>
+																			</button>
 																		</td>
 																	</tr>
 																	<tr>
@@ -73,7 +75,7 @@ const Attendance = () => {
 														</div>
 														<button
 															type="submit"
-															className="view-btn"
+															className="admin-attendance-view-button"
 														>
 															View
 														</button>

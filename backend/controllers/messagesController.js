@@ -1,62 +1,68 @@
 const Messages = require("../models/message");
 
-exports.getMessages = async (req, res, next) => {
-	try {
-		const { from, to } = req.body;
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const ErrorHandler = require("../utils/errorHandler");
 
-		const messages = await Messages.find({
-			users: {
-				$all: [from, to],
-			},
-		}).sort({ updatedAt: 1 });
+// Get message	=> /api/v1/msg/getmsg
+exports.getMessages = catchAsyncErrors(async (req, res, next) => {
+	const { from, to } = req.body;
 
-		const utilizedMessages = messages.map((msg) => {
-			return {
-				fromSelf: msg.sender.toString() === from,
-				message: msg.message,
-				time: msg.time,
-			};
-		});
-		res.json(utilizedMessages);
-	} catch (ex) {
-		next(ex);
+	// Check all inputs are present
+	if (!from) {
+		return next(new ErrorHandler("Sender is not specified", 400));
 	}
-};
-
-exports.addMessage = async (req, res, next) => {
-	try {
-		const { from, to, message } = req.body;
-		const data = await Messages.create({
-			message: message,
-			users: [from, to],
-			sender: from,
-		});
-
-		if (data)
-			return res.json({ msg: "Message added successfully.", success: true });
-		else
-			return res.json({
-				msg: "Failed to add message to the database",
-				success: false,
-			});
-	} catch (ex) {
-		next(ex);
+	if (!to) {
+		return next(new ErrorHandler("Receiver is not specified", 400));
 	}
-};
 
-// Delete user	=> /api/v1/admin/user/:id
-exports.deleteMessage = catchAsyncErrors(async (req, res, next) => {
-	const message = await User.findById(req.params.id);
+	const messages = await Messages.find({
+		users: {
+			$all: [from, to],
+		},
+	}).sort({ updatedAt: 1 });
 
-	if (!message) {
+	const utilizedMessages = messages.map((msg) => {
+		return {
+			fromSelf: msg.sender.toString() === from,
+			message: msg.message,
+			time: msg.time,
+		};
+	});
+	res.status(200).json(utilizedMessages);
+});
+
+// Create message	=> /api/v1/msg/addmsg
+exports.addMessage = catchAsyncErrors(async (req, res, next) => {
+	const { from, to, message } = req.body;
+	const data = await Messages.create({
+		message: message,
+		users: [from, to],
+		sender: from,
+	});
+
+	if (data) return res.status(200).json({ success: true });
+	else
 		return next(
-			new ErrorHandler(`message does not found with id: ${req.params.id}`)
+			new ErrorHandler("Failed to add message to the database", 500)
+		);
+});
+
+// Delete message	=> /api/v1/msg/:id
+exports.deleteMessage = catchAsyncErrors(async (req, res, next) => {
+	const message = await Messages.findById(req.params.id);
+
+	if (message) {
+		await message.remove();
+
+		res.status(200).json({
+			success: true,
+		});
+	} else {
+		return next(
+			new ErrorHandler(
+				`message does not found with id: ${req.params.id}`,
+				404
+			)
 		);
 	}
-
-	await message.remove();
-
-	res.status(200).json({
-		success: true,
-	});
 });

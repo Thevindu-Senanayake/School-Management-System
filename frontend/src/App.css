@@ -187,11 +187,11 @@ a {
 	text-align: center;
 }
 .nav-item {
-	/* top: 20px; */
 	color: #fff;
 	padding: 10px;
 	border-radius: 7px;
 	list-style: none;
+	cursor: pointer;
 }
 .nav-item:hover {
 	background: grey;
@@ -205,7 +205,6 @@ a {
 }
 .logout button {
 	all: unset;
-	cursor: text;
 }
 .logout-button {
 	background: transparent;
@@ -1209,6 +1208,12 @@ main footer img {
 	cursor: pointer;
 }
 /* admin-attendance */
+.admin-attendence-avater {
+	border-radius: 50%;
+	align-items: center;
+	margin-bottom: 11px;
+}
+
 .attendace-content {
 	width: 100%;
 }
@@ -1246,7 +1251,7 @@ main footer img {
 }
 
 .users .card {
-	width: 13.5%;
+	width: 18%;
 	margin: 10px;
 	background: #3b3e49;
 	text-align: center;
@@ -1254,6 +1259,7 @@ main footer img {
 	padding: 10px;
 	box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 	border: 2px solid #fff;
+	align-content: center;
 }
 
 .users .card img {
@@ -1278,12 +1284,13 @@ main footer img {
 	margin: auto;
 }
 
-.users .per span {
+.admin-attendance-value-button {
 	padding: 5px;
 	border-radius: 10px;
 	background: #2f3136;
 	font-size: 1.2rem;
 	color: #fff;
+	cursor: default !important;
 }
 
 .users td {
@@ -1291,9 +1298,11 @@ main footer img {
 	padding-right: 15px;
 	font-size: 1.2rem;
 	color: #fff;
+	border: none;
+	padding: 5px;
 }
 
-.users .card button {
+.admin-attendance-view-button {
 	width: 100%;
 	margin-top: 8px;
 	padding: 7px;
@@ -1305,12 +1314,11 @@ main footer img {
 	color: #4ad489;
 }
 
-.users .card button:hover {
+.admin-attendance-view-button:hover {
 	background: #4ad489;
 	color: #fff;
 	transition: 0.5s;
 }
-
 /*Attendance List serction  */
 
 .attendance {

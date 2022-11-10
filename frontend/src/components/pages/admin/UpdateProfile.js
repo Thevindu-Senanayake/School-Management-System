@@ -42,9 +42,8 @@ const UpdateProfile = () => {
 		const formData = new FormData();
 		formData.set("userName", name);
 		formData.set("role", user.role);
-		formData.set("id", user._id);
 
-		dispatch(updateUser(formData));
+		dispatch(updateUser(formData, user._id));
 		dispatch(loadUser());
 	};
 

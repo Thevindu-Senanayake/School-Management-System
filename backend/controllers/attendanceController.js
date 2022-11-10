@@ -50,7 +50,7 @@ exports.getOldAttendance = catchAsyncErrors(async (req, res, next) => {
 	});
 
 	if (attendance.length == 0) {
-		return next(new ErrorHandler("can not find the records"));
+		return next(new ErrorHandler("can not find the records", 404));
 	}
 
 	if (attendance && attendance.length > 0) {
