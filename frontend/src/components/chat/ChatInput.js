@@ -111,7 +111,7 @@ const Container = styled.div`
 	}
 	.input-container {
 		width: 100%;
-		border-radius: 2rem;
+		border-radius: 0.5rem;
 		display: flex;
 		align-items: center;
 		gap: 2rem;
@@ -132,10 +132,11 @@ const Container = styled.div`
 			&:focus {
 				outline: none;
 			}
+			text-transform: capitalize;
 		}
 		button {
-			padding: 0.3rem 2rem;
-			border-radius: 2rem;
+			padding: 5px 15px;
+			border-radius: 0.5rem;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -143,11 +144,11 @@ const Container = styled.div`
 			border: none;
 			@media screen and (min-width: 720px) and (max-width: 1080px) {
 				padding: 0.3rem 1rem;
-				svg {
+				img {
 					font-size: 1rem;
 				}
 			}
-			svg {
+			img {
 				font-size: 2rem;
 				color: white;
 			}

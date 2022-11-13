@@ -443,6 +443,7 @@ a {
 	font-size: 1.1rem;
 	background-color: #5e616a;
 	width: 100%;
+	text-transform: capitalize;
 }
 .chat-send-icon {
 	margin-top: 5px;
@@ -451,8 +452,10 @@ a {
 	height: 30px;
 	cursor: pointer;
 }
+.chat-send-button {
+	justify-content: center;
+}
 .chat-insert-icon {
-	margin-top: 5px;
 	margin-right: 15px;
 	height: 30px;
 	cursor: pointer;

@@ -54,7 +54,7 @@ const NavBar = () => {
 									<ul>
 										<li className="nav-item">
 											<Link to="/">
-												<i className="fas fa-comment navbar-icon"></i>
+												<i className="fas fa-comments navbar-icon"></i>
 												<span className="nav-item-text">
 													Message
 												</span>
@@ -64,7 +64,7 @@ const NavBar = () => {
 											<Fragment>
 												<li className="nav-item">
 													<Link to="/attendance/mark">
-														<i className="fas fa-user-plus navbar-icon"></i>
+														<i className="fas fa-marker navbar-icon"></i>
 														<span className="nav-item-text nav-item-text-resized">
 															Mark Attendance
 														</span>
@@ -85,7 +85,7 @@ const NavBar = () => {
 												<Fragment>
 													<li className="nav-item">
 														<Link to="/all-users">
-															<i className="fas fa-database navbar-icon"></i>
+															<i className="fas fa-users navbar-icon"></i>
 															<span className="nav-item-text">
 																Users
 															</span>
@@ -101,7 +101,7 @@ const NavBar = () => {
 													</li>
 													<li className="nav-item">
 														<Link to="/edit-profile">
-															<i className="fas fa-cog navbar-icon"></i>
+															<i className="fas fa-user-edit navbar-icon"></i>
 															<span className="nav-item-text">
 																Edit Profile
 															</span>
