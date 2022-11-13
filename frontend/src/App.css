@@ -1208,10 +1208,13 @@ main footer img {
 	cursor: pointer;
 }
 /* admin-attendance */
-.admin-attendence-avater {
+.admin-attendence-avatar {
 	border-radius: 50%;
+	width: 100%;
+	display: flex;
 	align-items: center;
-	margin-bottom: 11px;
+	justify-content: center;
+	margin-bottom: 10px;
 }
 
 .attendace-content {
@@ -1228,12 +1231,6 @@ main footer img {
 	display: flex;
 	width: 100%;
 }
-
-.main-3 .users {
-	display: flex;
-	width: 160%;
-}
-
 .attandance {
 	font-size: 2rem;
 	color: #fff;
@@ -1251,7 +1248,7 @@ main footer img {
 }
 
 .users .card {
-	width: 18%;
+	width: 240px !important;
 	margin: 10px;
 	background: #3b3e49;
 	text-align: center;
@@ -1390,28 +1387,6 @@ table thead tr {
 	color: #fff;
 	transition: 0.5rem;
 }
-/* .emoji {
-	position: relative;
-}
-.emoji svg {
-	font-size: 1.5rem;
-	color: #ffff00c8;
-	cursor: pointer;
-}
-.emoji-picker-react {
-	position: absolute;
-	top: -350px;
-	background-color: #080420;
-	box-shadow: 0 5px 10px #9a86f3;
-	border-color: #9a86f3;
-}
-.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar {
-	background-color: #080420;
-	width: 5px;
-}
-/* .emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar &-thumb {
-	background-color: #9a86f3;
-} */
 .emoji-picker-react .emoji-categories button {
 	filter: contrast(0);
 }

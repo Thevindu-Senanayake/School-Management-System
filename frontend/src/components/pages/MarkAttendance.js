@@ -52,6 +52,8 @@ const MarkAttendance = () => {
 			alert.error("Attendace should be provided");
 		} else if (girls > 50 || boys > 50) {
 			alert.error("Attendance should not be greater than 50");
+		} else if (girls % 1 !== 0 || boys % 1 !== 0) {
+			alert.error("Attendance should not be a decimal values");
 		} else {
 			dispatch(markAttendance(formData));
 			alert.success("Attendance successfully submitted");
