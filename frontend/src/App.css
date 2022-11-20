@@ -721,8 +721,8 @@ td {
 	line-height: 1.1;
 	border-radius: 0.4em;
 	background-color: #575555;
+	color: #fffefe;
 }
-
 .all-users-select::-ms-expand {
 	display: none;
 }
@@ -1222,6 +1222,9 @@ main footer img {
 
 .attendace-content {
 	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	overflow-y: scroll;
 }
 
 .grade {

@@ -72,8 +72,9 @@ exports.getTodayAttendance = catchAsyncErrors(async (req, res, next) => {
 			attendance,
 		});
 	} else {
-		res.status(500).json({
+		res.status(404).json({
 			success: false,
+			message: "Attendance Not Found",
 		});
 	}
 });
@@ -88,7 +89,7 @@ exports.getAllAttendance = catchAsyncErrors(async (req, res, next) => {
 			attendance,
 		});
 	} else {
-		res.status(500).json({
+		res.status(404).json({
 			success: false,
 		});
 	}

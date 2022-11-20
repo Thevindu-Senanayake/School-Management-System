@@ -9,6 +9,9 @@ import {
 	ADMIN_ATTENDANCE_REQUEST,
 	ADMIN_ATTENDANCE_SUCCESS,
 	ADMIN_ATTENDANCE_FAIL,
+	ADMIN_ALL_ATTENDANCE_REQUEST,
+	ADMIN_ALL_ATTENDANCE_SUCCESS,
+	ADMIN_ALL_ATTENDANCE_FAIL,
 } from "../constants/attendanceConstants";
 
 // Mark attendance
@@ -99,6 +102,37 @@ export const adminAttendance = () => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: ADMIN_ATTENDANCE_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Admin all attendance
+export const viewAllAttendance = () => async (dispatch) => {
+	try {
+		dispatch({ type: ADMIN_ALL_ATTENDANCE_REQUEST });
+
+		let response = {};
+
+		const { data } = await axios.get("api/v1/attendance/admin/all");
+
+		for (let i = 6; i < 10; i++) {
+			const gradeName = `Grade ${i}`;
+			response[gradeName] = [];
+			data["attendance"].forEach((record) => {
+				if (record["className"].indexOf(String(i)) > -1) {
+					response[gradeName].push(record);
+				}
+			});
+		}
+
+		dispatch({
+			type: ADMIN_ALL_ATTENDANCE_SUCCESS,
+			payload: response,
+		});
+	} catch (error) {
+		dispatch({
+			type: ADMIN_ALL_ATTENDANCE_FAIL,
 			payload: error.response.data.message,
 		});
 	}
