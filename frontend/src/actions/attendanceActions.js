@@ -83,7 +83,7 @@ export const adminAttendance = () => async (dispatch) => {
 
 		let response = {};
 
-		const { data } = await axios.get("api/v1/attendance/admin/all");
+		const { data } = await axios.get("api/v1/attendance/admin/");
 
 		for (let i = 6; i < 10; i++) {
 			const gradeName = `Grade ${i}`;

@@ -34,7 +34,7 @@ const ViewAttendance = () => {
 				<Fragment>
 					<div class="container">
 						<NavBar />
-						<div class="admin-old-attandance-content">
+						<div class="content-container">
 							<h1 class="admin-old-attandance-heddings">
 								{user && user.userName}
 							</h1>

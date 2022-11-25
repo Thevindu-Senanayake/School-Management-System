@@ -66,7 +66,7 @@ const AllUsers = () => {
 				<Fragment>
 					<div className="all-users-container">
 						<NavBar />
-						<div className="all-users-content">
+						<div className="content-container">
 							<h1 className="heddings">Users</h1>
 							<h1 className="heddings">
 								Total Users = {users && users.length}

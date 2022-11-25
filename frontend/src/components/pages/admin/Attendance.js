@@ -38,7 +38,7 @@ const Attendance = () => {
 			) : (
 				<div className="container">
 					<NavBar />
-					<div className="attendace-content">
+					<div className="content-container">
 						{grades.map((grade) => (
 							<Fragment key={grade}>
 								<br />

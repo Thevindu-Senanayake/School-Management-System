@@ -135,21 +135,6 @@ ul {
 	border-right: 0.5px solid white;
 	z-index: 1;
 }
-/* nav:hover {
-	width: 280px;
-	transition: 10ms;
-}
-.nav-item-text {
-	display: none;
-}
-nav:hover .nav-item-text {
-	opacity: 1;
-	display: inline-block;
-	top: 12px;
-	margin-left: 10px;
-	color: #fff;
-	/* transition: 0.1s;
-} */
 .navbar-hedding-container {
 	text-align: center;
 	display: flex;
@@ -556,10 +541,17 @@ input[type="number"] {
 
 /** Global **/
 .content {
-	width: 100%;
+	width: 100vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.content-container {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	overflow-y: scroll;
 }
 
 .btn {
@@ -653,10 +645,6 @@ input[type="number"] {
 	font-weight: bold;
 	color: white;
 	text-align: center;
-}
-
-.all-users-content {
-	width: 100%;
 }
 
 .all-users-tables {
@@ -784,10 +772,6 @@ select[multiple] option {
 	font-weight: bold;
 	color: white;
 	text-align: center;
-}
-
-.admin-old-attandance-content {
-	width: 100%;
 }
 
 .admin-old-attandance-tables {
@@ -950,10 +934,6 @@ td {
 	font-weight: bold;
 	color: white;
 	text-align: center;
-}
-
-.user-old-attandance-content {
-	width: 100%;
 }
 
 .user-old-attandance-tables {
@@ -1218,13 +1198,6 @@ main footer img {
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 10px;
-}
-
-.attendace-content {
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
-	overflow-y: scroll;
 }
 
 .grade {
