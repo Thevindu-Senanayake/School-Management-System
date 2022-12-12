@@ -1,5 +1,5 @@
 {
-	"name": "school-managament-system",
+	"name": "school-management-system",
 	"version": "1.0.0",
 	"description": "a software that connect all desktops and smartboards and monitor them",
 	"main": "server.js",
@@ -9,7 +9,12 @@
 		"prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
 		"backend": "SET NODE_ENV=PRODUCTION& node backend/server",
 		"frontend": "cd frontend && yarn electron:serve",
-		"deploy:local": "concurrently -k \"yarn backend\" \"yarn frontend\""
+		"deploy:local": "concurrently -k \"yarn backend\" \"yarn frontend\"",
+		"global-deps": "yarn global add concurrently wait-on cross-env",
+		"frontend-deps": "cd frontend && yarn install",
+		"backend-deps": "yarn install",
+		"local-deps": "yarn backend-deps \"yarn frontend-deps\"",
+		"install deps": "yarn local-deps \"yarn global-deps\""
 	},
 	"repository": {
 		"type": "git",

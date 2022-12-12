@@ -2,10 +2,11 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 
-import NavBar from "../../layout/NavBar";
-
 import { adminAttendance } from "../../../actions/attendanceActions";
+
+import NavBar from "../../layout/NavBar";
 import Loader from "../../layout/Loader";
+import NoAttendance from "../../layout/NoAttendance";
 
 const Attendance = () => {
 	const dispatch = useDispatch();
@@ -39,66 +40,70 @@ const Attendance = () => {
 				<div className="container">
 					<NavBar />
 					<div className="content-container">
-						{grades.map((grade) => (
-							<Fragment key={grade}>
-								<br />
-								<br />
-								<div className="users">
-									<section className="main-3 users">
-										<div className="main-top-3">
-											<h1 className="grade">{grade}</h1>
-										</div>
-										<div className="users">
-											<Slider {...settings}>
-												{attendance &&
-													attendance[grade].map((record) => (
-														<div
-															className="card"
-															key={record._id}
-														>
-															<div className="admin-attendence-avatar">
-																<img
-																	src="../images/avatar.png"
-																	alt="avatar"
-																/>
-															</div>
-															<h4>{record.className}</h4>
-															<div className="per">
-																<table>
-																	<tbody>
-																		<tr>
-																			<td>
-																				<button className="admin-attendance-value-button">
-																					{record.boys}
-																				</button>
-																			</td>
-																			<td>
-																				<button className="admin-attendance-value-button">
-																					{record.girls}
-																				</button>
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>Girls</td>
-																			<td>Boys</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-															<button
-																type="submit"
-																className="admin-attendance-view-button"
+						{attendance ? (
+							grades.map((grade) => (
+								<Fragment key={grade}>
+									<br />
+									<br />
+									<div className="users">
+										<section className="main-3 users">
+											<div className="main-top-3">
+												<h1 className="grade">{grade}</h1>
+											</div>
+											<div className="users">
+												<Slider {...settings}>
+													{attendance &&
+														attendance[grade].map((record) => (
+															<div
+																className="card"
+																key={record._id}
 															>
-																View
-															</button>
-														</div>
-													))}
-											</Slider>
-										</div>
-									</section>
-								</div>
-							</Fragment>
-						))}
+																<div className="admin-attendence-avatar">
+																	<img
+																		src="../images/avatar.png"
+																		alt="avatar"
+																	/>
+																</div>
+																<h4>{record.className}</h4>
+																<div className="per">
+																	<table>
+																		<tbody>
+																			<tr>
+																				<td>
+																					<button className="admin-attendance-value-button">
+																						{record.boys}
+																					</button>
+																				</td>
+																				<td>
+																					<button className="admin-attendance-value-button">
+																						{record.girls}
+																					</button>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td>Girls</td>
+																				<td>Boys</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+																<button
+																	type="submit"
+																	className="admin-attendance-view-button"
+																>
+																	View
+																</button>
+															</div>
+														))}
+												</Slider>
+											</div>
+										</section>
+									</div>
+								</Fragment>
+							))
+						) : (
+							<NoAttendance />
+						)}
 					</div>
 				</div>
 			)}
