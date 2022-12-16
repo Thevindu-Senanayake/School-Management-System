@@ -3,7 +3,7 @@ const io = require("socket.io");
 
 const app = require("./app");
 
-// initializing a server manualy
+// initializing a server manually
 const httpServer = http.createServer(app);
 
 // creating a socket using the http server
@@ -23,7 +23,7 @@ webSocket.on("connection", (socket) => {
 	socket.on("send-msg", (data) => {
 		const sendUserSocket = onlineUsers.get(data.to);
 		if (sendUserSocket) {
-			socket.to(sendUserSocket).emit("msg-recieve", data.msg, data.time);
+			socket.to(sendUserSocket).emit("msg-receive", data.msg, data.time);
 		}
 	});
 });

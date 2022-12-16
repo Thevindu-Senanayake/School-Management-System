@@ -13,8 +13,8 @@
 		"global-deps": "yarn global add concurrently wait-on cross-env",
 		"frontend-deps": "cd frontend && yarn install",
 		"backend-deps": "yarn install",
-		"local-deps": "yarn backend-deps \"yarn frontend-deps\"",
-		"install-deps": "yarn local-deps \"yarn global-deps\""
+		"local-deps": "yarn backend-deps && yarn frontend-deps",
+		"install-deps": "yarn local-deps && yarn global-deps"
 	},
 	"repository": {
 		"type": "git",

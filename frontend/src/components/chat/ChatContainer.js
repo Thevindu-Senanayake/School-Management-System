@@ -52,7 +52,7 @@ const ChatContainer = ({ currentChat, socket }) => {
 
 	useEffect(() => {
 		if (socket.current) {
-			socket.current.on("msg-recieve", (msg, time) => {
+			socket.current.on("msg-receive", (msg, time) => {
 				setNewMessages({ fromSelf: false, message: msg, time: time });
 			});
 		}
