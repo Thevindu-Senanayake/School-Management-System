@@ -67,8 +67,8 @@ const AllUsers = () => {
 					<div className="all-users-container">
 						<NavBar />
 						<div className="content-container">
-							<h1 className="heddings">Users</h1>
-							<h1 className="heddings">
+							<h1 className="headings">Users</h1>
+							<h1 className="headings">
 								Total Users = {users && users.length}
 							</h1>
 							<div className="all-users-tables">

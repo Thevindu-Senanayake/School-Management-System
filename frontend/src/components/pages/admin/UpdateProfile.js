@@ -73,7 +73,7 @@ const UpdateProfile = () => {
 									alt="Avatar"
 								/>
 							</div>
-							<h2 className="hedding">Edit Profile</h2>
+							<h2 className="heading">Edit Profile</h2>
 							<div className="input-with-label">
 								<input
 									type="text"

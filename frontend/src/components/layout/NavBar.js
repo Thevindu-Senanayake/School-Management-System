@@ -40,7 +40,7 @@ const NavBar = () => {
 					<div className="navbar-container">
 						<nav className="navbar">
 							<div className="navbar-content">
-								<div className="navbar-hedding-container">
+								<div className="navbar-heading-container">
 									<img
 										src="../images/avatar.png"
 										alt="avatar"

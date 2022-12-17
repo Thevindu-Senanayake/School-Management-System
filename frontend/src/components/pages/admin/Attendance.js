@@ -58,7 +58,7 @@ const Attendance = () => {
 																className="card"
 																key={record._id}
 															>
-																<div className="admin-attendence-avatar">
+																<div className="admin-attendance-avatar">
 																	<img
 																		src="../images/avatar.png"
 																		alt="avatar"
