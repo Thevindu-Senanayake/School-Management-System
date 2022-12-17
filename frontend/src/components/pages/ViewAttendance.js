@@ -35,15 +35,15 @@ const ViewAttendance = () => {
 					<div class="container">
 						<NavBar />
 						<div class="content-container">
-							<h1 class="admin-old-attandance-heddings">
+							<h1 class="admin-old-attendance-headings">
 								{user && user.userName}
 							</h1>
 							{/* // TODO: add a way to get total students in the className */}
-							<h1 class="admin-old-attandance-heddings">
+							<h1 class="admin-old-attendance-headings">
 								Total Students in Class = 45
 							</h1>
-							<div class="admin-old-attandance-tables">
-								<table class="admin-old-attandance-table">
+							<div class="admin-old-attendance-tables">
+								<table class="admin-old-attendance-table">
 									<thead>
 										<tr>
 											<th>Date</th>

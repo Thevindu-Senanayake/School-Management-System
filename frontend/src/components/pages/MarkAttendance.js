@@ -49,7 +49,7 @@ const MarkAttendance = () => {
 
 		// TODO: ask what to do
 		if (girls === 0 || boys === 0 || girls === "0" || boys === "0") {
-			alert.error("Attendace should be provided");
+			alert.error("Attendance should be provided");
 		} else if (girls > 50 || boys > 50) {
 			alert.error("Attendance should not be greater than 50");
 		} else if (girls % 1 !== 0 || boys % 1 !== 0) {
@@ -74,7 +74,7 @@ const MarkAttendance = () => {
 								alt="avatar"
 							/>
 						</div>
-						<h2 className="hedding">{user.userName}</h2>
+						<h2 className="heading">{user.userName}</h2>
 						<div className="user-attendance-input-group">
 							<div id="boys-input" className="input-with-label">
 								<input

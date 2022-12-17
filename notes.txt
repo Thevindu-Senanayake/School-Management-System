@@ -2,8 +2,8 @@
 2.MongoDB-Atlas credentials:
 	username: Thevindu
 	password: G7xj2tWZPSrekrHK
-TODO #8 - curretly working on
-TODO #9 - all-users as cards like in attendence
+TODO #8 - currently working on
+TODO #9 - all-users as cards like in attendance
 TODO #11
 TODO #12
 TODO #13

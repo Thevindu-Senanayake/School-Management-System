@@ -135,7 +135,7 @@ ul {
 	border-right: 0.5px solid white;
 	z-index: 1;
 }
-.navbar-hedding-container {
+.navbar-heading-container {
 	text-align: center;
 	display: flex;
 	margin: 10px;
@@ -512,7 +512,7 @@ a {
 	background: #555;
 }
 
-/* hide spiners in number inputs */
+/* hide spinners in number inputs */
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
 	-webkit-appearance: none;
@@ -571,7 +571,7 @@ input[type="number"] {
 	justify-content: space-between;
 }
 
-.hedding {
+.heading {
 	margin-bottom: 30px;
 	text-align: center;
 	color: #ff2f2f;
@@ -640,7 +640,7 @@ input[type="number"] {
 	font-family: "Mingzat", sans-serif;
 }
 
-.heddings {
+.headings {
 	font-size: 2rem;
 	font-weight: bold;
 	color: white;
@@ -766,21 +766,21 @@ select[multiple] option {
 	display: flex;
 }
 
-/* admin-old-attandance */
-.admin-old-attandance-heddings {
+/* admin-old-attendance */
+.admin-old-attendance-headings {
 	font-size: 2rem;
 	font-weight: bold;
 	color: white;
 	text-align: center;
 }
 
-.admin-old-attandance-tables {
+.admin-old-attendance-tables {
 	display: flex;
 	justify-content: space-evenly;
 }
 
 /* All Users Table*/
-.admin-old-attandance-table {
+.admin-old-attendance-table {
 	border-collapse: collapse;
 	margin: 25px 0;
 	font-size: 1.3em;
@@ -790,20 +790,20 @@ select[multiple] option {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.admin-old-attandance-table thead tr {
+.admin-old-attendance-table thead tr {
 	background-color: #009879;
 	color: white;
 	text-align: left;
 	font-weight: bold;
 }
 
-.admin-old-attandance-table th,
-.admin-old-attandance-tables td {
+.admin-old-attendance-table th,
+.admin-old-attendance-tables td {
 	padding: 12px 10px;
 	color: white;
 }
 
-.admin-old-attandance-table table,
+.admin-old-attendance-table table,
 th,
 td {
 	border: 2px solid rgb(160, 160, 160);
@@ -823,7 +823,7 @@ td {
 	margin-right: 30px;
 }
 
-.user-attendence-avatar {
+.user-attendance-avatar {
 	box-sizing: border-box;
 	width: 100px;
 	height: 100px;
@@ -833,14 +833,14 @@ td {
 	overflow: hidden;
 }
 
-.user-attendence-hedding {
+.user-attendance-heading {
 	margin-bottom: 30px;
 	text-align: center;
 	color: white;
 	text-transform: capitalize;
 }
 
-.user-attendence-btn {
+.user-attendance-btn {
 	width: 130px;
 	background: transparent;
 	outline: 2px solid #4ad489;
@@ -853,19 +853,19 @@ td {
 	color: #4ad489;
 }
 
-.user-attendence-btn-group {
+.user-attendance-btn-group {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 }
 
-.user-attendence-btn:hover {
+.user-attendance-btn:hover {
 	background: #4ad489;
 	color: white;
 	transition: 0.5s;
 }
 
-.user-attendence-input-box {
+.user-attendance-input-box {
 	width: 400px;
 	padding: 40px;
 	background: #3b3e49;
@@ -876,11 +876,11 @@ td {
 }
 
 /* fancy effect when clicking on input button */
-.user-attendence-input-box .user-attendence-input-with-label {
+.user-attendance-input-box .user-attendance-input-with-label {
 	position: relative;
 }
 
-.user-attendence-input-box .user-attendence-input-with-label input {
+.user-attendance-input-box .user-attendance-input-with-label input {
 	width: 100%;
 	padding: 10px 0;
 	font-size: 16px;
@@ -892,7 +892,7 @@ td {
 	background: transparent;
 }
 
-.user-attendence-input-box .user-attendence-input-with-label label {
+.user-attendance-input-box .user-attendance-input-with-label label {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -903,12 +903,12 @@ td {
 	transition: 0.5s;
 }
 
-.user-attendence-input-box
-	.user-attendence-input-with-label
+.user-attendance-input-box
+	.user-attendance-input-with-label
 	input:focus
 	~ label,
-.user-attendence-input-box
-	.user-attendence-input-with-label
+.user-attendance-input-box
+	.user-attendance-input-with-label
 	input:valid
 	~ label {
 	top: -20px;
@@ -922,27 +922,27 @@ td {
 	color: black;
 }
 
-/* user-old-attandance */
-.user-old-attandance-container {
+/* user-old-attendance */
+.user-old-attendance-container {
 	display: flex;
 	color: #1a1a1a;
 	font-family: "Mingzat", sans-serif;
 }
 
-.user-old-attandance-heddings {
+.user-old-attendance-headings {
 	font-size: 2rem;
 	font-weight: bold;
 	color: white;
 	text-align: center;
 }
 
-.user-old-attandance-tables {
+.user-old-attendance-tables {
 	display: flex;
 	justify-content: space-evenly;
 }
 
 /* All Users Table*/
-.user-old-attandance-table {
+.user-old-attendance-table {
 	border-collapse: collapse;
 	margin: 25px 0;
 	font-size: 1.3em;
@@ -952,36 +952,36 @@ td {
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.user-old-attandance-table thead tr {
+.user-old-attendance-table thead tr {
 	background-color: #009879;
 	color: white;
 	text-align: left;
 	font-weight: bold;
 }
 
-.user-old-attandance-table th,
-.user-old-attandance-tables td {
+.user-old-attendance-table th,
+.user-old-attendance-tables td {
 	padding: 12px 10px;
 	color: white;
 }
 
-.user-old-attandance-table table,
+.user-old-attendance-table table,
 th,
 td {
 	border: 2px solid rgb(160, 160, 160);
 }
 
-.user-old-attandance-heddings-1 {
+.user-old-attendance-headings-1 {
 	color: #009879;
 	font-size: 2.8rem;
 }
 
-.user-old-attandance-heddings-2 {
+.user-old-attendance-headings-2 {
 	color: #009879;
 	font-size: 2.3rem;
 }
 
-.user-old-attandance-heddings-3 {
+.user-old-attendance-headings-3 {
 	/* color: $bgcolor-2; */
 	font-size: 2rem;
 }
@@ -1191,7 +1191,7 @@ main footer img {
 	cursor: pointer;
 }
 /* admin-attendance */
-.admin-attendence-avatar {
+.admin-attendance-avatar {
 	border-radius: 50%;
 	width: 100%;
 	display: flex;
@@ -1210,7 +1210,7 @@ main footer img {
 	display: flex;
 	width: 100%;
 }
-.attandance {
+.attendance {
 	font-size: 2rem;
 	color: #fff;
 	font-weight: bold;
@@ -1295,7 +1295,7 @@ main footer img {
 	color: #fff;
 	transition: 0.5s;
 }
-/*Attendance List serction  */
+/*Attendance List section  */
 
 .attendance {
 	margin-top: 20px;
