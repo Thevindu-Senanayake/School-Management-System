@@ -54,6 +54,7 @@ const ChatContainer = ({ currentChat, socket }) => {
 		if (socket.current) {
 			socket.current.on("msg-receive", (msg, time) => {
 				setNewMessages({ fromSelf: false, message: msg, time: time });
+				window.electron.notificationApi.sendNotification(msg);
 			});
 		}
 
