@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain, Notification } = require("electron");
+
+const path = require("path");
 
 require("@electron/remote/main").initialize();
 
@@ -10,6 +12,7 @@ function createWindow() {
 		webPreferences: {
 			nodeIntegration: true,
 			enableRemoteModule: true,
+			preload: path.join(__dirname, "preload.js"),
 		},
 	});
 
@@ -31,4 +34,9 @@ app.on("activate", function () {
 	// On OS X it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
 	if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
+
+// notification
+ipcMain.on("notify", (event, message) => {
+	new Notification({ title: "Notification", body: message }).show();
 });
