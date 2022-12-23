@@ -17,7 +17,7 @@ const MarkAttendance = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { error, isMarked, loading } = useSelector(
+	const { error, loading, status, success } = useSelector(
 		(state) => state.markAttendance
 	);
 	const { user } = useSelector((state) => state.auth);
@@ -26,6 +26,7 @@ const MarkAttendance = () => {
 		if (user.role === "admin" || user.role === "god") {
 			navigate("/admin/chat");
 		}
+
 		setClassName(user.userName);
 
 		if (error) {
@@ -33,11 +34,25 @@ const MarkAttendance = () => {
 			dispatch(clearErrors());
 		}
 
-		if (isMarked) {
-			alert.success("You have already submitted the attendance for today");
+		if (status === 429) {
+			alert.error("You have already submitted the attendance for today");
 			navigate("/chat");
 		}
-	}, [dispatch, alert, error, user.userName, user.role, navigate, isMarked]);
+
+		if (success) {
+			alert.success("Attendance successfully submitted");
+			navigate("/chat");
+		}
+	}, [
+		dispatch,
+		alert,
+		error,
+		user.userName,
+		user.role,
+		navigate,
+		status,
+		success,
+	]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();
@@ -56,8 +71,6 @@ const MarkAttendance = () => {
 			alert.error("Attendance should not be a decimal values");
 		} else {
 			dispatch(markAttendance(formData));
-			alert.success("Attendance successfully submitted");
-			navigate("/chat");
 		}
 	};
 

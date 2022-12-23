@@ -38,12 +38,13 @@ export const markAttendance = (userData) => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: MARK_ATTENDANCE_FAIL,
-			payload: error.response.data.message,
+			message: error.response.data.message,
+			status: error.response.status,
 		});
 	}
 };
 
-// View attendace
+// View attendance
 export const viewAttendance = (className) => async (dispatch) => {
 	try {
 		dispatch({ type: VIEW_ATTENDANCE_REQUEST });

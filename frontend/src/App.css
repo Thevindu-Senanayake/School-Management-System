@@ -188,6 +188,9 @@ a {
 .nav-item-text-resized {
 	font-size: 13px;
 }
+.logout {
+	margin: 15px;
+}
 .logout button {
 	all: unset;
 }

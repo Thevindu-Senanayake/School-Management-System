@@ -2,7 +2,6 @@ import {
 	MARK_ATTENDANCE_REQUEST,
 	MARK_ATTENDANCE_SUCCESS,
 	MARK_ATTENDANCE_FAIL,
-	MARK_ATTENDANCE_RESET,
 	VIEW_ATTENDANCE_REQUEST,
 	VIEW_ATTENDANCE_SUCCESS,
 	VIEW_ATTENDANCE_FAIL,
@@ -20,26 +19,23 @@ export const markAttendaceReducer = (state = {}, action) => {
 			return {
 				...state,
 				loading: true,
+				success: false,
 			};
 
 		case MARK_ATTENDANCE_SUCCESS:
 			return {
 				...state,
-				loading: false,
-				isMarked: action.payload,
-			};
-
-		case MARK_ATTENDANCE_RESET:
-			return {
-				...state,
-				isMarked: false,
+				success: false,
+				loading: true,
 			};
 
 		case MARK_ATTENDANCE_FAIL:
 			return {
 				...state,
 				loading: false,
-				error: action.payload,
+				error: action.message,
+				success: false,
+				status: action.status,
 			};
 
 		default:
