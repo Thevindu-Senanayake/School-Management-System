@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { getTime } = require("../utils/timeFormatter");
 
 const MessageSchema = mongoose.Schema(
 	{
@@ -12,7 +11,6 @@ const MessageSchema = mongoose.Schema(
 		},
 		time: {
 			type: String,
-			default: getTime(),
 			required: true,
 		},
 	},

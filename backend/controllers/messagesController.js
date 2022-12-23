@@ -33,11 +33,12 @@ exports.getMessages = catchAsyncErrors(async (req, res, next) => {
 
 // Create message	=> /api/v1/msg/addmsg
 exports.addMessage = catchAsyncErrors(async (req, res, next) => {
-	const { from, to, message } = req.body;
+	const { from, to, message, time } = req.body;
 	const data = await Messages.create({
 		message: message,
 		users: [from, to],
 		sender: from,
+		time: time
 	});
 
 	if (data) return res.status(200).json({ success: true });
