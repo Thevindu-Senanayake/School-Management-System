@@ -11,8 +11,8 @@ import {
 	adminsReducer,
 } from "./reducers/userReducer";
 import {
-	markAttendaceReducer,
-	viewAttendaceReducer,
+	markAttendanceReducer,
+	viewAttendanceReducer,
 } from "./reducers/attendanceReducer";
 import { messagesReducer } from "./reducers/messageReducer";
 
@@ -23,8 +23,8 @@ const reducer = combineReducers({
 	updateUser: updateUserReducer,
 	admins: adminsReducer,
 	adminContacts: adminContactsReducer,
-	markAttendance: markAttendaceReducer,
-	viewAttendance: viewAttendaceReducer,
+	markAttendance: markAttendanceReducer,
+	viewAttendance: viewAttendanceReducer,
 	messages: messagesReducer,
 });
 

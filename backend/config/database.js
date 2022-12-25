@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const checkInactiveUsers = require("../middleware/userStatus");
 
 const connectDatabase = () => {
 	mongoose
@@ -14,6 +15,11 @@ const connectDatabase = () => {
 		.catch((error) => {
 			console.log(`Failed to connect mongoDB \n ${error}`);
 		});
+
+	// check for offline users
+	mongoose.connection.on("connected", () => {
+		checkInactiveUsers();
+	});
 };
 
 module.exports = connectDatabase;

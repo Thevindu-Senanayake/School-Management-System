@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 import { clearErrors } from "../../actions/authActions";
 import { getAdmins } from "../../actions/userActions";
@@ -49,8 +50,34 @@ const AdminChat = () => {
 
 	useEffect(() => {
 		if (user) {
-			socket.current = io(process.env.REACT_APP_HOST);
+			socket.current = io(process.env.REACT_APP_HOST, {
+				query: {
+					userId: user._id,
+				},
+			});
+
 			socket.current.emit("add-user", user._id);
+
+			// Ping
+			socket.current.on("connect", async () => {
+				const config = {
+					headers: {
+						"Content-Type": "application/json",
+					},
+				};
+
+				await axios.post("/api/v1/ping", { id: user._id }, config);
+			});
+
+			setInterval(async () => {
+				const config = {
+					headers: {
+						"Content-Type": "application/json",
+					},
+				};
+
+				await axios.post("/api/v1/ping", { id: user._id }, config);
+			}, 180000); // send a request every 3 minutes (180000 milliseconds)
 		}
 	}, [user]);
 

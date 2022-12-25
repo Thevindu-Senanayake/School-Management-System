@@ -13,7 +13,7 @@ import {
 	ADMIN_ALL_ATTENDANCE_FAIL,
 } from "../constants/attendanceConstants";
 
-export const markAttendaceReducer = (state = {}, action) => {
+export const markAttendanceReducer = (state = {}, action) => {
 	switch (action.type) {
 		case MARK_ATTENDANCE_REQUEST:
 			return {
@@ -43,7 +43,7 @@ export const markAttendaceReducer = (state = {}, action) => {
 	}
 };
 
-export const viewAttendaceReducer = (state = {}, action) => {
+export const viewAttendanceReducer = (state = {}, action) => {
 	switch (action.type) {
 		case VIEW_ATTENDANCE_REQUEST:
 		case ADMIN_ATTENDANCE_REQUEST:

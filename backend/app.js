@@ -17,10 +17,12 @@ app.use(fileUpload());
 const auth = require("./routes/auth");
 const attendance = require("./routes/attendance");
 const message = require("./routes/message");
+const user = require("./routes/user");
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/attendance", attendance);
 app.use("/api/v1/msg", message);
+app.use("/api/v1/", user);
 
 // Middleware to handle errors
 app.use(errorMiddleware);
