@@ -15,7 +15,6 @@ exports.ping = catchAsyncErrors(async (req, res, next) => {
 			if (error) {
 				return next(new ErrorHandler(error, 500));
 			}
-			console.log(`[+] ping: ${user.modifiedCount} user online`);
 			return res.json({ success: true });
 		}
 	);
@@ -33,7 +32,6 @@ exports.setOffline = catchAsyncErrors(async (req, res, next) => {
 			if (error) {
 				return next(new ErrorHandler(error, 500));
 			}
-			console.log(`[-] ping: ${user.modifiedCount} user offline`);
 			return res.json({ success: true });
 		}
 	);

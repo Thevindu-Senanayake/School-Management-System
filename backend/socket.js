@@ -45,7 +45,6 @@ webSocket.on("connection", (socket) => {
 
 				// Make the request
 				const req = http.request(options, (res) => {
-					console.log(`statusCode: ${res.statusCode}`);
 
 					res.on("data", (d) => {
 						process.stdout.write(d);
@@ -62,7 +61,6 @@ webSocket.on("connection", (socket) => {
 				req.end();
 			}
 		});
-		console.log(`client ${userId} disconnected`);
 
 		// Remove the user's id and socket id from the onlineUsers
 		onlineUsers.delete(userId);
