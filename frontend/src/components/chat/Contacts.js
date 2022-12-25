@@ -20,8 +20,10 @@ const Contacts = ({ contacts, changeChat }) => {
 					<img src="../images/avatar.png" alt="avatar" />
 					<div className="title-text">{contact.userName}</div>
 					<h3 className="status-tag">
-						<span className="online"></span>
-						online
+						<span
+							className={contact.active ? "online" : "offline"}
+						></span>
+						{contact.active ? "online" : "offline"}
 					</h3>
 					<div className="conv-msg">Sample</div>
 				</div>

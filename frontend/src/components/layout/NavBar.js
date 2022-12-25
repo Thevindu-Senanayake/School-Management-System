@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 import { clearErrors } from "../../actions/authActions";
 import { logOut } from "../../actions/authActions";
@@ -16,8 +17,16 @@ const NavBar = () => {
 		(state) => state.auth
 	);
 
-	const logoutHandler = () => {
+	const logoutHandler = async () => {
 		dispatch(logOut());
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+		await axios.post("/api/v1/offline", { id: user._id }, config);
+
 		alert.success("Logged out successfully");
 	};
 
