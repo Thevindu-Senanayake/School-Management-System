@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		default: "user",
 	},
+	active: {
+		type: Boolean,
+	},
+	lastActive: {
+		type: Date,
+	},
 	createdAt: {
 		type: Date,
 		default: Date.now,

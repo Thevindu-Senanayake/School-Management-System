@@ -25,6 +25,7 @@ const AdminChat = () => {
 	const { user, loading: authLoading } = useSelector((state) => state.auth);
 
 	const [currentChat, setCurrentChat] = useState(undefined);
+	const [status, setStatus] = useState({});
 
 	useEffect(() => {
 		if (!authLoading) {
@@ -59,8 +60,20 @@ const AdminChat = () => {
 		if (user) {
 			socket.current = io(process.env.REACT_APP_HOST);
 			socket.current.emit("add-user", user._id);
+
+			socket.current.on("userStatusUpdate", (data) => {
+				if (Object.keys(status).length === 0) {
+					setStatus({ [data.userId]: data.active });
+				} else {
+					setStatus({ ...status, [data.userId]: data.active });
+				}
+			});
+
+			return () => {
+				socket.current.disconnect();
+			};
 		}
-	}, [user]);
+	}, [user, status]);
 
 	const handleChatChange = (chat) => {
 		setCurrentChat(chat);
@@ -78,7 +91,11 @@ const AdminChat = () => {
 							<div id="search-cont">
 								<input type="text" placeholder="Search" />
 							</div>
-							<Contacts contacts={users} changeChat={handleChatChange} />
+							<Contacts
+								contacts={users}
+								changeChat={handleChatChange}
+								status={status}
+							/>
 							{currentChat === undefined ? (
 								<h1>select a chat</h1>
 							) : (
