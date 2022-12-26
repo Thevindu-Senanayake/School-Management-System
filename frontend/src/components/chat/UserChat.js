@@ -23,6 +23,7 @@ const AdminChat = () => {
 	const { user, loading: authLoading } = useSelector((state) => state.auth);
 
 	const [currentChat, setCurrentChat] = useState(undefined);
+	const [status, setStatus] = useState({});
 
 	useEffect(() => {
 		if (!authLoading) {
@@ -51,8 +52,16 @@ const AdminChat = () => {
 		if (user) {
 			socket.current = io(process.env.REACT_APP_HOST);
 			socket.current.emit("add-user", user._id);
+
+			socket.current.on("userStatusUpdate", (data) => {
+				setStatus({ ...status, [data.userId]: data.active });
+			});
+
+			return () => {
+				socket.current.disconnect();
+			};
 		}
-	}, [user]);
+	}, [user, status]);
 
 	const handleChatChange = (chat) => {
 		setCurrentChat(chat);

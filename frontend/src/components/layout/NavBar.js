@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { useNavigate, Link } from "react-router-dom";
+import { io } from "socket.io-client";
 
 import { clearErrors } from "../../actions/authActions";
 import { logOut } from "../../actions/authActions";
@@ -18,6 +19,8 @@ const NavBar = () => {
 
 	const logoutHandler = () => {
 		dispatch(logOut());
+		const socket = io(process.env.REACT_APP_HOST);
+		socket.emit("logout", user._id);
 		alert.success("Logged out successfully");
 	};
 
