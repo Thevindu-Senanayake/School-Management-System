@@ -1,46 +1,49 @@
 {
-	"name": "school-management-system",
-	"version": "1.0.0",
-	"description": "a software that connect all desktops and smartboards and monitor them",
-	"main": "server.js",
-	"scripts": {
-		"start": "node backend/server.js",
-		"dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
-		"prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
-		"backend": "SET NODE_ENV=PRODUCTION& node backend/server",
-		"frontend": "cd frontend && yarn electron:serve",
-		"deploy:local": "concurrently -k \"yarn backend\" \"yarn frontend\"",
-		"global-deps": "yarn global add concurrently wait-on cross-env",
-		"frontend-deps": "cd frontend && yarn install",
-		"backend-deps": "yarn install",
-		"local-deps": "yarn backend-deps && yarn frontend-deps",
-		"install-deps": "yarn local-deps && yarn global-deps"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Thevindu-Senanayake/School-Management-System.git"
-	},
-	"author": "Thevindu_Senanayake",
-	"license": "Apache-2.0",
-	"bugs": {
-		"url": "https://github.com/Thevindu-Senanayake/School-Management-System/issues"
-	},
-	"homepage": "https://github.com/Thevindu-Senanayake/School-Management-System#readme",
-	"devDependencies": {
-		"nodemon": "^2.0.18"
-	},
-	"dependencies": {
-		"bcrypt": "^5.0.1",
-		"bcryptjs": "^2.4.3",
-		"body-parser": "^1.20.0",
-		"cookie-parser": "^1.4.6",
-		"cors": "^2.8.5",
-		"dotenv": "^16.0.1",
-		"express": "^4.18.1",
-		"express-fileupload": "^1.4.0",
-		"express-rate-limit": "^6.7.0",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^6.4.0",
-		"socket.io": "^4.5.1"
-	}
+  "name": "school-management-system",
+  "version": "1.0.0",
+  "description": "a software that connect all desktops and smartboards and monitor them",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server",
+    "backend": "SET NODE_ENV=PRODUCTION& node backend/server",
+    "frontend": "cd frontend && yarn electron:serve",
+    "deploy:local": "concurrently -k \"yarn backend\" \"yarn frontend\"",
+    "global-deps": "yarn global add concurrently wait-on cross-env",
+    "frontend-deps": "cd frontend && yarn install",
+    "backend-deps": "yarn install",
+    "local-deps": "yarn backend-deps && yarn frontend-deps",
+    "install-deps": "yarn local-deps && yarn global-deps",
+    "start:frontend": "cd frontend && yarn start",
+    "electron": "cd frontend && electron .",
+    "electron:deploy": "concurrently -k \"yarn backend\" \"yarn start:frontend\" \"yarn electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thevindu-Senanayake/School-Management-System.git"
+  },
+  "author": "Thevindu_Senanayake",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Thevindu-Senanayake/School-Management-System/issues"
+  },
+  "homepage": "https://github.com/Thevindu-Senanayake/School-Management-System#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "express-rate-limit": "^6.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.0",
+    "socket.io": "^4.5.1"
+  }
 }

@@ -1,6 +1,6 @@
 # School-Management-System
 
-### Welcome to the School Management System build with Electron ! This system is designed to help school to manage Daily Attendece & Send Messages or Notices to Each Classes
+### Welcome to the School Management System build with Electron ! This system is designed to help school to manage Daily Attendece & Send Messages or Notices to Each Classes & Can Connect All Desktops and Smart Bords And Monitor Them.
 
 <br>
 
