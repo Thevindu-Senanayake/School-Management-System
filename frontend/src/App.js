@@ -24,97 +24,106 @@ import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import { loadUser } from "./actions/authActions";
 import store from "./store";
 import Home from "./components/Home";
+import NotFound from "./components/layout/NotFound";
 
 function App() {
-	useEffect(() => {
-		store.dispatch(loadUser());
-	}, []);
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
-	return (
-		<Router>
-			<div className="App">
-				<div className="">
-					<Routes>
-						<Route
-							path="/"
-							element={
-								<ProtectedRoutes>
-									<Home />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/all-users"
-							element={
-								<ProtectedRoutes isAdmin={true}>
-									<AllUsers />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/edit-profile"
-							element={
-								<ProtectedRoutes isAdmin={true}>
-									<UpdateProfile />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/admin/chat"
-							element={
-								<ProtectedRoutes isAdmin={true}>
-									<AdminChat />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/register"
-							element={
-								<ProtectedRoutes isAdmin={true}>
-									<Register />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/chat"
-							element={
-								<ProtectedRoutes>
-									<UserChat />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/attendance/mark"
-							element={
-								<ProtectedRoutes>
-									<MarkAttendance />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/attendance/view"
-							element={
-								<ProtectedRoutes>
-									<ViewAttendance />
-								</ProtectedRoutes>
-							}
-						/>
-						<Route
-							path="/attendance"
-							element={
-								<ProtectedRoutes>
-									<Attendance />
-								</ProtectedRoutes>
-							}
-						/>
-					</Routes>
-				</div>
-				<Routes>
-					<Route path="/login" element={<Login />} />
-				</Routes>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className="App">
+        <div className="">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes>
+                  <Home />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/all-users"
+              element={
+                <ProtectedRoutes isAdmin={true}>
+                  <AllUsers />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/edit-profile"
+              element={
+                <ProtectedRoutes isAdmin={true}>
+                  <UpdateProfile />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/admin/chat"
+              element={
+                <ProtectedRoutes isAdmin={true}>
+                  <AdminChat />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <ProtectedRoutes isAdmin={true}>
+                  <Register />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoutes>
+                  <UserChat />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/attendance/mark"
+              element={
+                <ProtectedRoutes>
+                  <MarkAttendance />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/attendance/view"
+              element={
+                <ProtectedRoutes>
+                  <ViewAttendance />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/attendance"
+              element={
+                <ProtectedRoutes>
+                  <Attendance />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/not-found"
+              element={
+                <ProtectedRoutes>
+                  <NotFound />
+                </ProtectedRoutes>
+              }
+            />
+          </Routes>
+        </div>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

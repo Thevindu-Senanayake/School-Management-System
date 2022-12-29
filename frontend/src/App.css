@@ -1395,10 +1395,28 @@ table thead tr {
   transform: translate(-50%, -50%);
   font-size: 70px;
   cursor: progress;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 .no-results-found-icon {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   align-items: center;
+}
+/** Not Found Page **/
+.not-found {
+  font-size: 3vw;
+  height: 100vh;
+  color: #d9d9e3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-icon {
+  width: 150px;
+  height: 150px;
 }
