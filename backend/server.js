@@ -12,7 +12,7 @@ connectDatabase();
 // handle uncaught exceptions
 process.on("uncaughtException", (err) => {
 	console.log(`ERROR: ${err.message}`);
-	console.log("shutting down server due to uncaught exeption");
+	console.log("shutting down server due to uncaught exception");
 	process.exit(1);
 });
 
@@ -33,7 +33,7 @@ server.on("error", (e) => {
 	}
 });
 
-// handle unhadled promise rejection
+// handle unhandled promise rejection
 process.on("unhandledRejection", (err) => {
 	console.log(`ERROR: ${err.message}`);
 	console.log(`shutting down the server due to unhandled promise rejection.`);

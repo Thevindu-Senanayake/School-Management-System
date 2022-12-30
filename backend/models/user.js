@@ -42,8 +42,8 @@ userSchema.pre("save", async function (next) {
 });
 
 // Compare user password
-userSchema.methods.comparePassword = async function (enterdPassword) {
-	return await bcrypt.compare(enterdPassword, this.password);
+userSchema.methods.comparePassword = async function (enteredPassword) {
+	return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // Return JSON Web Token

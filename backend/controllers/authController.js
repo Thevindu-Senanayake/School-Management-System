@@ -8,9 +8,9 @@ const sendToken = require("../utils/JsonWebToken");
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 	const { userName, password } = req.body;
 
-	// check if user is already exsists
-	const usercheck = await User.findOne({ userName });
-	if (usercheck) {
+	// check if user is already exists
+	const userCheck = await User.findOne({ userName });
+	if (userCheck) {
 		return next(new ErrorHandler("Username is already taken", 400));
 	} else {
 		const user = await User.create({
