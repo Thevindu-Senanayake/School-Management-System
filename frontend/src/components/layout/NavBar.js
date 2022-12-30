@@ -20,7 +20,7 @@ const NavBar = () => {
 	const logoutHandler = () => {
 		dispatch(logOut());
 		const socket = io(process.env.REACT_APP_HOST);
-		socket.emit("logout", user._id);
+		socket.disconnect();
 		alert.success("Logged out successfully");
 	};
 

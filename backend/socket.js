@@ -36,24 +36,6 @@ webSocket.on("connection", (socket) => {
 			socket.to(sendUserSocket).emit("msg-receive", data.msg, data.time);
 		}
 	});
-
-	socket.on("logout", (userId) => {
-		User.updateOne(
-			{ _id: userId },
-			{ active: false, lastActive: Date.now() },
-			(error, user) => {
-				if (error) {
-					console.error(error);
-				} else {
-					webSocket.emit("userStatusUpdate", {
-						userId,
-						active: false,
-						lastActive: Date.now(),
-					});
-				}
-			}
-		);
-	});
 	socket.on("disconnect", () => {
 		User.updateOne(
 			{ _id: id },
