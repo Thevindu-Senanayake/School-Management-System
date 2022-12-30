@@ -70,7 +70,7 @@ const AdminChat = () => {
 			});
 
 			return () => {
-				socket.current.disconnect();
+				socket.current.off("userStatusUpdate");
 			};
 		}
 	}, [user, status]);

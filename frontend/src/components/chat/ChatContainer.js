@@ -59,6 +59,11 @@ const ChatContainer = ({ currentChat, socket }) => {
 		}
 
 		newMessages && setMessages((prev) => [...prev, newMessages]);
+
+		const webSocket = socket.current;
+		return () => {
+			webSocket.off("msg-receive");
+		};
 	}, [socket, newMessages]);
 
 	useEffect(() => {
