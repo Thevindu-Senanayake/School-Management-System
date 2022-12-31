@@ -11,7 +11,7 @@
 ### Some of the key features of the School Management System include:
 
 `Users - `<br>
-`*` Mariking Attendence : Users can Mark attendece of their classes <br>
+`*` Marking Attendence : Users can Mark attendece of their classes <br>
 `*` Viewing Attendece : Users can view their old attendece within 1 Month Duration<br>
 `*` Chat : Users can receive school notices & can directly contact with Principal <br><br>
 `Admins - `<br>
