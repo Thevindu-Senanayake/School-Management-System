@@ -3,7 +3,7 @@ const Messages = require("../models/message");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ErrorHandler = require("../utils/errorHandler");
 
-// Get message	=> /api/v1/msg/getmsg
+// Get message	=> /api/v1/msg/get-msg
 exports.getMessages = catchAsyncErrors(async (req, res, next) => {
 	const { from, to } = req.body;
 
@@ -31,14 +31,14 @@ exports.getMessages = catchAsyncErrors(async (req, res, next) => {
 	res.status(200).json(utilizedMessages);
 });
 
-// Create message	=> /api/v1/msg/addmsg
+// Create message	=> /api/v1/msg/add-msg
 exports.addMessage = catchAsyncErrors(async (req, res, next) => {
 	const { from, to, message, time } = req.body;
 	const data = await Messages.create({
 		message: message,
 		users: [from, to],
 		sender: from,
-		time: time
+		time: time,
 	});
 
 	if (data) return res.status(200).json({ success: true });

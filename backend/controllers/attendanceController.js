@@ -35,7 +35,7 @@ exports.markAttendance = catchAsyncErrors(async (req, res, next) => {
 	}
 });
 
-// get old attendance for user  => /api/v1/attendace/old
+// get old attendance for user  => /api/v1/attendance/old
 exports.getOldAttendance = catchAsyncErrors(async (req, res, next) => {
 	const { className } = req.body;
 

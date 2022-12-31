@@ -19,7 +19,7 @@ export const getOldMessages = (to, from) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			"/api/v1/msg/getmsg",
+			"/api/v1/msg/get-msg",
 			{ from: from, to: to },
 			config
 		);
@@ -47,7 +47,7 @@ export const sendMessages = (to, from, message, time) => async (dispatch) => {
 		};
 
 		const { data } = await axios.post(
-			"/api/v1/msg/addmsg",
+			"/api/v1/msg/add-msg",
 			{ from: from, to: to, message: message, time: time },
 			config
 		);

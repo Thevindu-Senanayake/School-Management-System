@@ -9,8 +9,8 @@ const {
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
-router.post("/addmsg/", isAuthenticatedUser, addMessage);
-router.post("/getmsg/", isAuthenticatedUser, getMessages);
+router.post("/add-msg/", isAuthenticatedUser, addMessage);
+router.post("/get-msg/", isAuthenticatedUser, getMessages);
 router.delete("/:id/", isAuthenticatedUser, deleteMessage);
 
 module.exports = router;

@@ -56,7 +56,7 @@ const Contacts = ({ contacts, changeChat, status, searchQuery }) => {
 								></span>
 								{contact.active ? "online" : "offline"}
 							</h3>
-							<div className="conv-msg">Sample</div>
+							<div className="last-active">Sample</div>
 						</div>
 				  ))
 				: contacts.map((contact, index) => (
@@ -75,7 +75,7 @@ const Contacts = ({ contacts, changeChat, status, searchQuery }) => {
 								></span>
 								{contact.active ? "online" : "offline"}
 							</h3>
-							<div className="conv-msg">Sample</div>
+							<div className="last-active">Sample</div>
 						</div>
 				  ))}
 		</div>
