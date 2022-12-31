@@ -24,6 +24,7 @@ const AdminChat = () => {
 
 	const [currentChat, setCurrentChat] = useState(undefined);
 	const [status, setStatus] = useState({});
+	const [searchQuery, setSearchQuery] = useState("");
 
 	useEffect(() => {
 		if (!authLoading) {
@@ -77,11 +78,18 @@ const AdminChat = () => {
 						<NavBar />
 						<div id="chat-cont">
 							<div id="search-cont">
-								<input type="text" placeholder="Search" />
+								<input
+									type="text"
+									placeholder="Search"
+									onChange={(e) => {
+										setSearchQuery(e.target.value);
+									}}
+								/>
 							</div>
 							<Contacts
 								contacts={admins}
 								changeChat={handleChatChange}
+								searchQuery={searchQuery}
 							/>
 							{currentChat === undefined ? (
 								<h1>select a chat</h1>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { v4 as uuidv4 } from "uuid";
 
-import { getTime } from "../../utils/timeUitilities";
+import { getTime } from "../../utils/timeUtilities";
 
 import { getOldMessages, sendMessages } from "../../actions/messageAction";
 import { SEND_MESSAGES_RESET } from "../../constants/messageConstants";
